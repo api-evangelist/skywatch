@@ -1,0 +1,261 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SkyWatch EarthCache API",
+    "version": "1.7"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "apikey": {
+        "key": "x-api-key",
+        "value": "{{apiKey}}",
+        "in": "header"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": { "name": "Archive Search", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Create a search", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.skywatch.co/earthcache/archive/search",
+            "body": { "type": "json", "data": "{\"location\":{\"type\":\"Polygon\",\"coordinates\":[[[0,0],[0,0],[0,0],[0,0]]]},\"start_date\":\"2019-08-24\",\"end_date\":\"2019-08-24\",\"resolution\":[\"low\"],\"order_by\":[\"resolution\"]}" }
+          },
+          "docs": "Creates an asynchronous archive search over historical imagery and returns the search id."
+        },
+        {
+          "info": { "name": "Get search results", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.skywatch.co/earthcache/archive/search/:id/search_results",
+            "params": [
+              { "name": "id", "value": "", "type": "path", "description": "The id of the search." }
+            ]
+          },
+          "docs": "Returns the search results. Returns 202 while processing; 200 once complete."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Pipelines", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List pipelines", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.skywatch.co/earthcache/pipelines" },
+          "docs": "Lists all pipelines in your account."
+        },
+        {
+          "info": { "name": "Create a pipeline", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.skywatch.co/earthcache/pipelines",
+            "body": { "type": "json", "data": "{\"name\":\"my-pipeline\",\"start_date\":\"2019-08-24\",\"end_date\":\"2019-08-24\",\"budget_per_km2\":0,\"max_cost\":0,\"cloud_cover_percentage\":100,\"interval\":\"1d\",\"aoi\":{\"type\":\"Polygon\",\"coordinates\":[[[-180,-90],[-180,-90],[-180,-90],[-180,-90]]]},\"output\":{\"format\":\"geotiff\",\"mosaic\":\"off\"},\"status\":\"active\",\"sources\":{\"include\":[\"Pleiades\",\"Spot\",\"PlanetScope\",\"Sentinel-2\"]}}" }
+          },
+          "docs": "Creates a pipeline that monitors an AOI and delivers imagery on a schedule."
+        },
+        {
+          "info": { "name": "Get a pipeline", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.skywatch.co/earthcache/pipelines/:id",
+            "params": [ { "name": "id", "value": "", "type": "path", "description": "The id of the pipeline." } ]
+          },
+          "docs": "Retrieves a pipeline by id."
+        },
+        {
+          "info": { "name": "Update a pipeline", "type": "http" },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.skywatch.co/earthcache/pipelines/:id",
+            "params": [ { "name": "id", "value": "", "type": "path", "description": "The id of the pipeline." } ],
+            "body": { "type": "json", "data": "{\"status\":\"paused\"}" }
+          },
+          "docs": "Updates an existing pipeline."
+        },
+        {
+          "info": { "name": "Delete a pipeline", "type": "http" },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.skywatch.co/earthcache/pipelines/:id",
+            "params": [ { "name": "id", "value": "", "type": "path", "description": "The id of the pipeline." } ]
+          },
+          "docs": "Deletes a pipeline by id."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Interval Results & Delivery", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List interval results for a pipeline", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.skywatch.co/earthcache/pipelines/:id/interval_results",
+            "params": [ { "name": "id", "value": "", "type": "path", "description": "The id of the pipeline." } ]
+          },
+          "docs": "Lists interval results for a single pipeline, including analytics and metadata download URLs."
+        },
+        {
+          "info": { "name": "List all interval results", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.skywatch.co/earthcache/interval_results" },
+          "docs": "Lists interval results across all pipelines."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Cost Estimation", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Calculate pipeline cost", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.skywatch.co/earthcache/pipelines/calculate",
+            "body": { "type": "json", "data": "{\"name\":\"estimate\",\"start_date\":\"2019-08-24\",\"end_date\":\"2019-08-24\",\"interval\":\"1d\",\"aoi\":{\"type\":\"Polygon\",\"coordinates\":[[[-180,-90],[-180,-90],[-180,-90],[-180,-90]]]},\"output\":{\"format\":\"geotiff\"}}" }
+          },
+          "docs": "Calculates the cost of a pipeline's area and intervals plus probability of collection for tasking."
+        },
+        {
+          "info": { "name": "Calculate price", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.skywatch.co/earthcache/price/calculate",
+            "body": { "type": "json", "data": "{\"location\":{\"type\":\"Polygon\",\"coordinates\":[[[0,0],[0,0],[0,0],[0,0]]]},\"start_date\":\"2019-08-24\",\"end_date\":\"2019-08-24\"}" }
+          },
+          "docs": "Calculates the cost of a location and intervals, honoring purchase minimums and prepurchase discounts."
+        },
+        {
+          "info": { "name": "Get price information", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.skywatch.co/earthcache/price/:resolution",
+            "params": [ { "name": "resolution", "value": "high", "type": "path", "description": "Resolution band." } ]
+          },
+          "docs": "Gets price information for the caller's plan and an optional resolution."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Outputs & Bands", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List outputs", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.skywatch.co/earthcache/outputs" },
+          "docs": "Lists reusable output configurations (format, bands, mosaicking)."
+        },
+        {
+          "info": { "name": "Get an output", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.skywatch.co/earthcache/outputs/:id",
+            "params": [ { "name": "id", "value": "", "type": "path", "description": "The id of the output." } ]
+          },
+          "docs": "Retrieves an output configuration by id."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Locations", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List locations", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.skywatch.co/earthcache/locations" },
+          "docs": "Lists saved locations."
+        },
+        {
+          "info": { "name": "Create a location", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.skywatch.co/earthcache/locations",
+            "body": { "type": "json", "data": "{\"name\":\"my-aoi\",\"geometry\":{\"type\":\"Polygon\",\"coordinates\":[[[0,0],[0,0],[0,0],[0,0]]]}}" }
+          },
+          "docs": "Creates a saved location from KML or GeoJSON."
+        },
+        {
+          "info": { "name": "Fetch a location", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.skywatch.co/earthcache/locations/:id",
+            "params": [ { "name": "id", "value": "", "type": "path", "description": "The id of the location." } ]
+          },
+          "docs": "Fetches a saved location by id."
+        },
+        {
+          "info": { "name": "Update a location", "type": "http" },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.skywatch.co/earthcache/locations/:id",
+            "params": [ { "name": "id", "value": "", "type": "path", "description": "The id of the location." } ],
+            "body": { "type": "json", "data": "{\"name\":\"renamed-aoi\"}" }
+          },
+          "docs": "Updates a saved location."
+        },
+        {
+          "info": { "name": "Delete a location", "type": "http" },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.skywatch.co/earthcache/locations/:id",
+            "params": [ { "name": "id", "value": "", "type": "path", "description": "The id of the location." } ]
+          },
+          "docs": "Deletes a saved location by id."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Subscriptions & Callbacks", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List subscriptions", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.skywatch.co/earthcache/subscriptions" },
+          "docs": "Lists subscriptions."
+        },
+        {
+          "info": { "name": "Create a subscription", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.skywatch.co/earthcache/subscriptions",
+            "body": { "type": "json", "data": "{\"callback_uri\":\"https://example.com/earthcache-webhook\",\"status\":\"active\"}" }
+          },
+          "docs": "Registers a callback URI to receive EarthCache platform events."
+        },
+        {
+          "info": { "name": "Update a subscription", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.skywatch.co/earthcache/subscriptions/:id",
+            "params": [ { "name": "id", "value": "", "type": "path", "description": "The id of the subscription." } ],
+            "body": { "type": "json", "data": "{\"status\":\"paused\"}" }
+          },
+          "docs": "Updates subscription properties such as callback_uri and status."
+        },
+        {
+          "info": { "name": "Delete a subscription", "type": "http" },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.skywatch.co/earthcache/subscriptions/:id",
+            "params": [ { "name": "id", "value": "", "type": "path", "description": "The id of the subscription." } ]
+          },
+          "docs": "Unsubscribes from an existing subscription."
+        },
+        {
+          "info": { "name": "Send subscription samples", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.skywatch.co/earthcache/subscriptions/:id/sample",
+            "params": [ { "name": "id", "value": "", "type": "path", "description": "The id of the subscription." } ],
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Sends sample event payloads to the subscription's callback URI."
+        },
+        {
+          "info": { "name": "List callbacks", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.skywatch.co/earthcache/callbacks" },
+          "docs": "Returns callback invocations over the last 3 months (the retention period)."
+        }
+      ]
+    }
+  ]
+}

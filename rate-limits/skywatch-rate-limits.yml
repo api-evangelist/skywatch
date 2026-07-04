@@ -1,0 +1,71 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: SkyWatch
+providerId: skywatch
+created: '2026-07-04'
+modified: '2026-07-04'
+reconciled: false
+tags:
+- Satellite Imagery
+- Earth Observation
+- EarthCache
+- Rate Limiting
+- Quotas
+description: >-
+  SkyWatch does not publish fixed numeric request-rate limits for the EarthCache
+  API. The dominant constraint is commercial rather than request-based: imagery
+  ordering is metered per square kilometre by resolution tier with per-tier
+  purchase minimums, and pipelines are further bounded by a per-pipeline budget
+  (budget_per_km2 and max_cost). Archive Search is asynchronous - a search is
+  created, then polled - and clients are expected to poll politely (the reference
+  client waits between GET requests while a search returns 202). Callback
+  delivery for subscriptions retains invocation history for three months.
+notes: >-
+  No per-account or per-endpoint numeric API rate limit is documented as of the
+  review date. Treat the per-km2 purchase minimums and per-pipeline budget/
+  max_cost fields as the effective throughput and spend controls. Verify any
+  account-specific limits with SkyWatch support during reconciliation.
+sources:
+- https://api-docs.earthcache.com/
+- https://skywatch.com/earthcache/pricing/
+- https://github.com/chris010970/earthcache
+responseCodes:
+  throttled: 429
+  processing: 202
+limits:
+- name: EarthCache API Requests
+  scope: account
+  metric: requests
+  limit: not published
+  notes: No fixed numeric request-rate limit is documented for the EarthCache API.
+- name: Archive Search Polling
+  scope: search
+  metric: requests
+  limit: poll with backoff
+  notes: A search returns 202 while processing; clients poll search_results with a delay until 200.
+- name: Order Purchase Minimum
+  scope: order
+  metric: area
+  limit: per resolution tier
+  notes: Each resolution tier has a minimum billable AOI (for example 5 km2 for standard and very-high archive, 1 km2 for high).
+- name: Pipeline Budget
+  scope: pipeline
+  metric: cost
+  limit: configurable (budget_per_km2, max_cost)
+  notes: Pipelines cap spend per km2 and overall via budget_per_km2 and max_cost fields.
+- name: Callback Retention
+  scope: subscription
+  metric: history
+  limit: 3 months
+  notes: The /callbacks endpoint returns callback invocations over the last three months.
+policies:
+- name: Asynchronous Search
+  description: Searches are created and then polled; callers should implement a delay between poll requests and honor 202 responses.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+- name: Budget Enforcement
+  description: Pipelines will not deliver imagery that exceeds their configured budget_per_km2 or max_cost.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,102 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: SkyWatch
+providerId: skywatch
+created: '2026-07-04'
+modified: '2026-07-04'
+reconciled: false
+tags:
+- Satellite Imagery
+- Earth Observation
+- EarthCache
+- Geospatial
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of EarthCache spend. EarthCache cost is driven almost entirely by
+  imagery ordered, metered per square kilometre and priced by resolution tier and
+  by ordering mode (archive vs. tasking), subject to per-tier purchase minimums.
+  Pipelines let teams pre-set spend controls (budget_per_km2 and max_cost) so
+  recurring monitoring stays within budget. EarthCache Enterprise converts this
+  into an annual license with prepaid data credits and organization-wide usage
+  analytics. There is no per-request API fee; the unit of cost is area of imagery
+  delivered.
+notes: >-
+  Per-km2 rates and minimums are drawn from SkyWatch's public pricing pages and
+  are not reconciled here. The primary optimization levers are AOI size (mind the
+  per-tier minimums), resolution tier, archive vs. tasking, cloud-cover and
+  coverage filters, and per-pipeline budget/max_cost caps.
+sources:
+- https://skywatch.com/earthcache/pricing/
+- https://skywatch.com/data-pricing/
+- https://api-docs.earthcache.com/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: SkyWatch
+serviceCategory: Geospatial and Earth Observation Data
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+  - Adjustment
+focusColumns:
+  ServiceName: EarthCache
+  ServiceCategory: Geospatial and Earth Observation Data
+  ProviderName: SkyWatch
+  PublisherName: SkyWatch
+  InvoiceIssuerName: SkyWatch
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Usage-Based
+meters:
+- name: archive_area
+  description: Square kilometres of archive imagery ordered, priced per km2 by resolution tier.
+  unit: km2
+  aggregation: sum
+  dimensions:
+  - account
+  - pipeline
+  - resolution
+- name: tasking_area
+  description: Square kilometres of new (tasked) imagery captured, priced per km2 by resolution tier.
+  unit: km2
+  aggregation: sum
+  dimensions:
+  - account
+  - pipeline
+  - resolution
+- name: interval_deliveries
+  description: Imagery deliveries produced by pipeline intervals, each carrying an interval cost.
+  unit: deliveries
+  aggregation: sum
+  dimensions:
+  - account
+  - pipeline
+- name: prepaid_credits
+  description: Data credits consumed under an EarthCache Enterprise annual license.
+  unit: credits
+  aggregation: sum
+  dimensions:
+  - account
+principles:
+- name: Visibility
+  description: Track km2 ordered by pipeline, resolution, and archive-vs-tasking mode; review interval costs and probability of collection before committing tasking orders.
+- name: Allocation
+  description: Name and tag pipelines per project/team so imagery spend maps to internal cost centers.
+- name: Optimization
+  description: Right-size the AOI to the per-tier purchase minimum, choose the lowest sufficient resolution, prefer archive over tasking when timeliness allows, apply cloud-cover and coverage filters, and cap spend with budget_per_km2 and max_cost.
+- name: Accountability
+  description: Assign an owner per pipeline and review monthly km2 spend against Enterprise credits or pay-as-you-go budget.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

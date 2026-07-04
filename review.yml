@@ -1,0 +1,112 @@
+aid: skywatch
+name: SkyWatch
+review:
+  question: Does SkyWatch expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-04'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. SkyWatch's public EarthCache API is
+    request/response REST over HTTPS (base https://api.skywatch.co/earthcache,
+    x-api-key auth). Its event/notification surface is delivered by HTTP
+    callbacks: a subscription registers a callback_uri that the EarthCache
+    platform POSTs events to, and past invocations are listed via GET
+    /callbacks (3-month retention). That is a server-to-endpoint webhook, not a
+    persistent WebSocket (ws:// or wss://) connection, so there is no
+    server-push transport on SkyWatch's own API to model in AsyncAPI. Archive
+    Search is also asynchronous but consumed by polling (create search, then
+    GET search_results, which returns 202 until complete) rather than by a
+    streamed connection.
+findings:
+  summary: |
+    SkyWatch does not publish a documented public WebSocket API. SkyWatch Space
+    Applications is an Earth observation company; its EarthCache platform
+    exposes a single REST API (base https://api.skywatch.co/earthcache,
+    authenticated with an x-api-key header) to discover, price, order, and
+    deliver commercial satellite imagery. The official OpenAPI specification
+    (EarthCache API Specification v1.7, served to the ReDoc docs at
+    https://api-docs.earthcache.com/) declares one server and only REST paths -
+    Archive Search, Pipelines, interval results, cost/price calculation,
+    outputs, locations, subscriptions, and callbacks. Real-time / event delivery
+    is handled by HTTP callback subscriptions (register a callback_uri; the
+    platform POSTs events; GET /callbacks lists invocations over the last 3
+    months), which is a webhook mechanism, not a WebSocket. No ws:// or wss://
+    endpoint is documented anywhere in the EarthCache specification.
+  openSource: |
+    The EarthCache platform and API are proprietary/commercial. SkyWatch does
+    not publish an official open-source server or SDK for the API. A community
+    Python client (github.com/chris010970/earthcache) demonstrates calling the
+    REST API with pycurl and an x-api-key header, and confirms the same base
+    URL and endpoint paths as the official specification, but it is a
+    third-party demonstration, not a SkyWatch project.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.skywatch.co/earthcache
+      documented: true
+      note: The entire EarthCache API - search, pipelines, results, pricing, outputs, locations, subscriptions - is request/response REST authenticated with an x-api-key header.
+    - protocol: Webhook
+      scheme: https
+      documented: true
+      note: Subscriptions register a callback_uri that the EarthCache platform POSTs events to; GET /callbacks lists invocations over the last 3 months. Server-to-endpoint HTTP, not WebSocket.
+    - protocol: Polling
+      scheme: https
+      documented: true
+      note: Archive Search is asynchronous - POST /archive/search then poll GET /archive/search/{id}/search_results, which returns 202 until the search completes.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in the EarthCache API specification (v1.7) as of the review date.
+  endpointsConfirmed:
+    - POST   https://api.skywatch.co/earthcache/archive/search
+    - GET    https://api.skywatch.co/earthcache/archive/search/{id}/search_results
+    - GET    https://api.skywatch.co/earthcache/pipelines
+    - POST   https://api.skywatch.co/earthcache/pipelines
+    - DELETE https://api.skywatch.co/earthcache/pipelines
+    - GET    https://api.skywatch.co/earthcache/pipelines/{id}
+    - PATCH  https://api.skywatch.co/earthcache/pipelines/{id}
+    - DELETE https://api.skywatch.co/earthcache/pipelines/{id}
+    - GET    https://api.skywatch.co/earthcache/pipelines/{id}/interval_results
+    - POST   https://api.skywatch.co/earthcache/pipelines/calculate
+    - POST   https://api.skywatch.co/earthcache/price/calculate
+    - GET    https://api.skywatch.co/earthcache/price/{resolution}
+    - GET    https://api.skywatch.co/earthcache/interval_results
+    - GET    https://api.skywatch.co/earthcache/outputs
+    - GET    https://api.skywatch.co/earthcache/outputs/{id}
+    - GET    https://api.skywatch.co/earthcache/locations
+    - POST   https://api.skywatch.co/earthcache/locations
+    - GET    https://api.skywatch.co/earthcache/locations/{id}
+    - PATCH  https://api.skywatch.co/earthcache/locations/{id}
+    - DELETE https://api.skywatch.co/earthcache/locations/{id}
+    - GET    https://api.skywatch.co/earthcache/subscriptions
+    - POST   https://api.skywatch.co/earthcache/subscriptions
+    - POST   https://api.skywatch.co/earthcache/subscriptions/{id}
+    - DELETE https://api.skywatch.co/earthcache/subscriptions/{id}
+    - POST   https://api.skywatch.co/earthcache/subscriptions/{id}/sample
+    - GET    https://api.skywatch.co/earthcache/callbacks
+  endpointsModeled: []
+sources:
+  - url: https://api-docs.earthcache.com/
+    type: Documentation
+    note: Official EarthCache API ReDoc docs; loads the OpenAPI spec (spec.yaml) behind Auth0 login.
+  - url: https://d2dj0b3n4amtw4.cloudfront.net/spec.yaml
+    type: OpenAPI
+    note: Official EarthCache API Specification v1.7. One server (https://api.skywatch.co/earthcache), x-api-key auth, REST only, no WebSocket.
+  - url: https://github.com/chris010970/earthcache
+    type: SourceCode
+    note: Third-party Python client confirming base URL, x-api-key header, and archive/search + pipelines + interval_results + outputs paths.
+  - url: https://skywatch.com/earthcache/pricing/
+    type: Pricing
+    note: Per-km2 archive and tasking pricing by resolution tier with purchase minimums.
+  - url: https://skywatch.com/
+    type: Website
+    note: SkyWatch Space Applications company site and EarthCache product.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists on SkyWatch's own API. The EarthCache
+    API is request/response REST plus HTTP callback webhooks and asynchronous
+    search polling. No AsyncAPI document was created because there is no
+    server-push (WebSocket/SSE) transport on SkyWatch's own API to model.

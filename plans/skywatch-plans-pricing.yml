@@ -1,0 +1,153 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: SkyWatch
+providerId: skywatch
+created: '2026-07-04'
+modified: '2026-07-04'
+reconciled: false
+tags:
+- Satellite Imagery
+- Earth Observation
+- EarthCache
+- Geospatial
+- Plans
+description: >-
+  EarthCache pricing is usage-based and metered per square kilometre of imagery
+  ordered, with resolution-based purchase minimums rather than seat licenses.
+  You pay only for the area you order, with low minimums and no long-term
+  contracts. Two ordering modes exist: Archive (existing imagery) and Tasking
+  (new imagery captured to order). EarthCache Enterprise is an annual,
+  organization-wide license that bundles prepaid data credits, management, and
+  analytics. Exact per-km2 rates below are drawn from SkyWatch's public pricing
+  pages and should be re-verified during reconciliation.
+notes: >-
+  Prices are per square kilometre and subject to a minimum billable AOI per
+  resolution tier (for example, ordering a 2 km2 very-high-resolution archive
+  scene is billed at the 5 km2 minimum). Verify current rates, minimums, and
+  prepurchase discounts on https://skywatch.com/earthcache/pricing/ and
+  https://skywatch.com/data-pricing/ during reconciliation.
+sources:
+- https://skywatch.com/earthcache/pricing/
+- https://skywatch.com/data-pricing/
+- https://api-docs.earthcache.com/
+plans:
+- id: earthcache-archive
+  name: Archive Imagery (Pay-as-you-go)
+  type: usage
+  description: >-
+    Order existing satellite imagery from SkyWatch's provider catalog, billed
+    per square kilometre by resolution tier with per-tier purchase minimums.
+  entries:
+  - label: Standard Resolution Archive
+    name: archive_standard
+    type: usage
+    metric: area
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: from $2.50 per km2 (min AOI 5 km2)
+    userMultiplied: false
+  - label: High Resolution (50 cm) Archive
+    name: archive_high
+    type: usage
+    metric: area
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: from $10 per km2 (min AOI 1 km2)
+    userMultiplied: false
+  - label: Very High Resolution (30 cm) Archive
+    name: archive_vhr_30
+    type: usage
+    metric: area
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: from $22.50 per km2 (min AOI 5 km2)
+    userMultiplied: false
+  - label: Very High Resolution (15 cm) Archive
+    name: archive_vhr_15
+    type: usage
+    metric: area
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: from $40 per km2
+    userMultiplied: false
+  elements:
+  - name: Archive Search API
+  - name: Pipelines API
+  - name: Multi-Provider Catalog
+  - name: GeoTIFF and Analytics Delivery
+- id: earthcache-tasking
+  name: Tasking (New Imagery)
+  type: usage
+  description: >-
+    Task satellites to capture new imagery of your area of interest, billed per
+    square kilometre by resolution tier with larger minimum AOIs than archive.
+  entries:
+  - label: High Resolution (50 cm) Tasking
+    name: tasking_high
+    type: usage
+    metric: area
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: from $12 per km2 (min AOI ~25 km2)
+    userMultiplied: false
+  - label: Very High Resolution (30 cm) Tasking
+    name: tasking_vhr_30
+    type: usage
+    metric: area
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: from $32.50 per km2
+    userMultiplied: false
+  - label: Very High Resolution (15 cm) Tasking
+    name: tasking_vhr_15
+    type: usage
+    metric: area
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: from $60 per km2
+    userMultiplied: false
+  elements:
+  - name: Tasking via Pipelines
+  - name: Probability of Collection Estimates
+  - name: Scheduled Delivery
+- id: earthcache-enterprise
+  name: EarthCache Enterprise
+  type: enterprise
+  description: >-
+    Organization-wide annual license to source, manage, and analyze remote
+    sensing data at scale, bundling prepaid data credits, team management, and
+    usage analytics. Contact SkyWatch for terms.
+  entries:
+  - label: Annual Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales (annual license with included data credits)
+    userMultiplied: false
+  elements:
+  - name: Prepaid Data Credits
+  - name: Volume Discounts
+  - name: Usage Analytics and Management
+  - name: Support and SLAs
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

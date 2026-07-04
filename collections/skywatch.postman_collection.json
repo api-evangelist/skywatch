@@ -1,0 +1,291 @@
+{
+  "info": {
+    "name": "SkyWatch EarthCache API",
+    "description": "Discover, price, order, and deliver commercial satellite imagery via the SkyWatch EarthCache API. Base URL: https://api.skywatch.co/earthcache. All requests require an x-api-key header. Grounded in the public EarthCache API specification (v1.7, https://api-docs.earthcache.com/).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      { "key": "key", "value": "x-api-key", "type": "string" },
+      { "key": "value", "value": "{{apiKey}}", "type": "string" },
+      { "key": "in", "value": "header", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://api.skywatch.co/earthcache", "type": "string" },
+    { "key": "apiKey", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Archive Search",
+      "item": [
+        {
+          "name": "Create a search",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"location\": {\n    \"type\": \"Polygon\",\n    \"coordinates\": [[[0,0],[0,0],[0,0],[0,0]]]\n  },\n  \"start_date\": \"2019-08-24\",\n  \"end_date\": \"2019-08-24\",\n  \"resolution\": [\"low\"],\n  \"coverage\": 0,\n  \"order_by\": [\"resolution\"]\n}" },
+            "url": { "raw": "{{baseUrl}}/archive/search", "host": ["{{baseUrl}}"], "path": ["archive", "search"] },
+            "description": "Creates an asynchronous archive search over historical imagery and returns the search id."
+          }
+        },
+        {
+          "name": "Get search results",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/archive/search/:id/search_results", "host": ["{{baseUrl}}"], "path": ["archive", "search", ":id", "search_results"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Returns the search results. Returns 202 while processing; 200 once complete."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pipelines",
+      "item": [
+        {
+          "name": "List pipelines",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/pipelines", "host": ["{{baseUrl}}"], "path": ["pipelines"] },
+            "description": "Lists all pipelines in your account."
+          }
+        },
+        {
+          "name": "Create a pipeline",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"my-pipeline\",\n  \"start_date\": \"2019-08-24\",\n  \"end_date\": \"2019-08-24\",\n  \"budget_per_km2\": 0,\n  \"max_cost\": 0,\n  \"cloud_cover_percentage\": 100,\n  \"resolution_low\": 30,\n  \"resolution_high\": 10,\n  \"interval\": \"1d\",\n  \"result_delivery\": { \"max_latency\": \"0d\", \"priorities\": [\"latest\", \"highest_resolution\", \"lowest_cost\"] },\n  \"aoi\": { \"type\": \"Polygon\", \"coordinates\": [[[-180,-90],[-180,-90],[-180,-90],[-180,-90]]] },\n  \"output\": { \"id\": \"\", \"format\": \"geotiff\", \"mosaic\": \"off\" },\n  \"status\": \"active\",\n  \"sources\": { \"include\": [\"Pleiades\", \"Spot\", \"PlanetScope\", \"Sentinel-2\"] }\n}" },
+            "url": { "raw": "{{baseUrl}}/pipelines", "host": ["{{baseUrl}}"], "path": ["pipelines"] },
+            "description": "Creates a pipeline that monitors an AOI and delivers imagery on a schedule."
+          }
+        },
+        {
+          "name": "Get a pipeline",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/pipelines/:id", "host": ["{{baseUrl}}"], "path": ["pipelines", ":id"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Retrieves a pipeline by id."
+          }
+        },
+        {
+          "name": "Update a pipeline",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"status\": \"paused\"\n}" },
+            "url": { "raw": "{{baseUrl}}/pipelines/:id", "host": ["{{baseUrl}}"], "path": ["pipelines", ":id"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Updates an existing pipeline."
+          }
+        },
+        {
+          "name": "Delete a pipeline",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/pipelines/:id", "host": ["{{baseUrl}}"], "path": ["pipelines", ":id"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Deletes a pipeline by id."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Interval Results & Delivery",
+      "item": [
+        {
+          "name": "List interval results for a pipeline",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/pipelines/:id/interval_results", "host": ["{{baseUrl}}"], "path": ["pipelines", ":id", "interval_results"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Lists interval results for a single pipeline, including analytics and metadata download URLs."
+          }
+        },
+        {
+          "name": "List all interval results",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/interval_results", "host": ["{{baseUrl}}"], "path": ["interval_results"] },
+            "description": "Lists interval results across all pipelines."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Cost Estimation",
+      "item": [
+        {
+          "name": "Calculate pipeline cost",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"estimate\",\n  \"start_date\": \"2019-08-24\",\n  \"end_date\": \"2019-08-24\",\n  \"interval\": \"1d\",\n  \"aoi\": { \"type\": \"Polygon\", \"coordinates\": [[[-180,-90],[-180,-90],[-180,-90],[-180,-90]]] },\n  \"output\": { \"format\": \"geotiff\" }\n}" },
+            "url": { "raw": "{{baseUrl}}/pipelines/calculate", "host": ["{{baseUrl}}"], "path": ["pipelines", "calculate"] },
+            "description": "Calculates the cost of a pipeline's area and intervals plus probability of collection for tasking."
+          }
+        },
+        {
+          "name": "Calculate price",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"location\": { \"type\": \"Polygon\", \"coordinates\": [[[0,0],[0,0],[0,0],[0,0]]] },\n  \"start_date\": \"2019-08-24\",\n  \"end_date\": \"2019-08-24\"\n}" },
+            "url": { "raw": "{{baseUrl}}/price/calculate", "host": ["{{baseUrl}}"], "path": ["price", "calculate"] },
+            "description": "Calculates the cost of a location and intervals, honoring purchase minimums and prepurchase discounts."
+          }
+        },
+        {
+          "name": "Get price information",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/price/:resolution", "host": ["{{baseUrl}}"], "path": ["price", ":resolution"], "variable": [{ "key": "resolution", "value": "high" }] },
+            "description": "Gets price information for the caller's plan and an optional resolution."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Outputs & Bands",
+      "item": [
+        {
+          "name": "List outputs",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/outputs", "host": ["{{baseUrl}}"], "path": ["outputs"] },
+            "description": "Lists reusable output configurations (format, bands, mosaicking)."
+          }
+        },
+        {
+          "name": "Get an output",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/outputs/:id", "host": ["{{baseUrl}}"], "path": ["outputs", ":id"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Retrieves an output configuration by id."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Locations",
+      "item": [
+        {
+          "name": "List locations",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/locations", "host": ["{{baseUrl}}"], "path": ["locations"] },
+            "description": "Lists saved locations."
+          }
+        },
+        {
+          "name": "Create a location",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"my-aoi\",\n  \"geometry\": { \"type\": \"Polygon\", \"coordinates\": [[[0,0],[0,0],[0,0],[0,0]]] }\n}" },
+            "url": { "raw": "{{baseUrl}}/locations", "host": ["{{baseUrl}}"], "path": ["locations"] },
+            "description": "Creates a saved location from KML or GeoJSON."
+          }
+        },
+        {
+          "name": "Fetch a location",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/locations/:id", "host": ["{{baseUrl}}"], "path": ["locations", ":id"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Fetches a saved location by id."
+          }
+        },
+        {
+          "name": "Update a location",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"renamed-aoi\"\n}" },
+            "url": { "raw": "{{baseUrl}}/locations/:id", "host": ["{{baseUrl}}"], "path": ["locations", ":id"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Updates a saved location."
+          }
+        },
+        {
+          "name": "Delete a location",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/locations/:id", "host": ["{{baseUrl}}"], "path": ["locations", ":id"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Deletes a saved location by id."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Subscriptions & Callbacks",
+      "item": [
+        {
+          "name": "List subscriptions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/subscriptions", "host": ["{{baseUrl}}"], "path": ["subscriptions"] },
+            "description": "Lists subscriptions."
+          }
+        },
+        {
+          "name": "Create a subscription",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"callback_uri\": \"https://example.com/earthcache-webhook\",\n  \"status\": \"active\"\n}" },
+            "url": { "raw": "{{baseUrl}}/subscriptions", "host": ["{{baseUrl}}"], "path": ["subscriptions"] },
+            "description": "Registers a callback URI to receive EarthCache platform events."
+          }
+        },
+        {
+          "name": "Update a subscription",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"status\": \"paused\"\n}" },
+            "url": { "raw": "{{baseUrl}}/subscriptions/:id", "host": ["{{baseUrl}}"], "path": ["subscriptions", ":id"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Updates subscription properties such as callback_uri and status."
+          }
+        },
+        {
+          "name": "Delete a subscription",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/subscriptions/:id", "host": ["{{baseUrl}}"], "path": ["subscriptions", ":id"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Unsubscribes from an existing subscription."
+          }
+        },
+        {
+          "name": "Send subscription samples",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{}" },
+            "url": { "raw": "{{baseUrl}}/subscriptions/:id/sample", "host": ["{{baseUrl}}"], "path": ["subscriptions", ":id", "sample"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Sends sample event payloads to the subscription's callback URI."
+          }
+        },
+        {
+          "name": "List callbacks",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/callbacks", "host": ["{{baseUrl}}"], "path": ["callbacks"] },
+            "description": "Returns callback invocations over the last 3 months (the retention period)."
+          }
+        }
+      ]
+    }
+  ]
+}
