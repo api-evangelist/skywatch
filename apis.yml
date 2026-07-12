@@ -188,6 +188,10 @@ apis:
     sample payloads to a subscription, and list the callback invocations made
     over the last three months.
 common:
+- type: DomainSecurity
+  url: security/skywatch-domain-security.yml
+- type: Authentication
+  url: authentication/skywatch-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/skywatch-apps
 - type: Website
