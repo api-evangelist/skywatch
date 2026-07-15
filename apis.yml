@@ -188,6 +188,8 @@ apis:
     sample payloads to a subscription, and list the callback invocations made
     over the last three months.
 common:
+- type: AgenticAccess
+  url: agentic-access/skywatch-agentic-access.yml
 - type: DomainSecurity
   url: security/skywatch-domain-security.yml
 - type: Authentication
