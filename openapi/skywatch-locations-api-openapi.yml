@@ -1,0 +1,118 @@
+openapi: 3.0.3
+info:
+  title: SkyWatch EarthCache Archive Search Locations API
+  description: 'The EarthCache API gives developers a single, provider-agnostic interface to discover, price, order, and deliver commercial satellite imagery and geospatial data. Create an archive Search over historical imagery, stand up a Pipeline that monitors an area of interest and delivers imagery on a schedule, retrieve interval results with analytics and metadata download URLs, estimate cost, manage reusable output configurations and saved locations, and subscribe to platform events via callback URIs. All requests are authenticated with an `x-api-key` header. Imagery is billed per square kilometre with resolution-based purchase minimums.
+
+
+    This description is authored by API Evangelist for the apis.io network and is grounded in SkyWatch''s public EarthCache API specification (v1.7, https://api-docs.earthcache.com/). It is not an official SkyWatch artifact.'
+  version: '1.7'
+  contact:
+    name: SkyWatch Support
+    url: https://skywatch.com/support
+    email: support@skywatch.com
+servers:
+- url: https://api.skywatch.co/earthcache
+  description: EarthCache production
+security:
+- ApiKey: []
+tags:
+- name: Locations
+  description: Reusable server-side areas of interest from KML or GeoJSON.
+paths:
+  /locations:
+    get:
+      tags:
+      - Locations
+      summary: List locations
+      operationId: listLocations
+      responses:
+        '200':
+          description: A list of saved locations.
+    post:
+      tags:
+      - Locations
+      summary: Create a location
+      operationId: createLocation
+      description: Create a saved location from KML or GeoJSON, abstracted into a reusable server-side instance referenced by id.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Location'
+      responses:
+        '201':
+          description: Location created.
+  /locations/{id}:
+    get:
+      tags:
+      - Locations
+      summary: Fetch a location
+      operationId: getLocation
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The location.
+    patch:
+      tags:
+      - Locations
+      summary: Update a location
+      operationId: updateLocation
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Location'
+      responses:
+        '200':
+          description: Location updated.
+    delete:
+      tags:
+      - Locations
+      summary: Delete a location
+      operationId: deleteLocation
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Location deleted.
+components:
+  schemas:
+    Location:
+      type: object
+      properties:
+        name:
+          type: string
+        geometry:
+          $ref: '#/components/schemas/GeoJSON'
+    GeoJSON:
+      type: object
+      description: A GeoJSON geometry (typically a Polygon) describing the AOI.
+      properties:
+        type:
+          type: string
+          example: Polygon
+        coordinates:
+          type: array
+          items: {}
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      in: header
+      name: x-api-key

@@ -1,0 +1,136 @@
+openapi: 3.0.3
+info:
+  title: SkyWatch EarthCache Archive Search Interval Results API
+  description: 'The EarthCache API gives developers a single, provider-agnostic interface to discover, price, order, and deliver commercial satellite imagery and geospatial data. Create an archive Search over historical imagery, stand up a Pipeline that monitors an area of interest and delivers imagery on a schedule, retrieve interval results with analytics and metadata download URLs, estimate cost, manage reusable output configurations and saved locations, and subscribe to platform events via callback URIs. All requests are authenticated with an `x-api-key` header. Imagery is billed per square kilometre with resolution-based purchase minimums.
+
+
+    This description is authored by API Evangelist for the apis.io network and is grounded in SkyWatch''s public EarthCache API specification (v1.7, https://api-docs.earthcache.com/). It is not an official SkyWatch artifact.'
+  version: '1.7'
+  contact:
+    name: SkyWatch Support
+    url: https://skywatch.com/support
+    email: support@skywatch.com
+servers:
+- url: https://api.skywatch.co/earthcache
+  description: EarthCache production
+security:
+- ApiKey: []
+tags:
+- name: Interval Results
+  description: Results and delivery URLs produced by pipeline intervals.
+paths:
+  /pipelines/{id}/interval_results:
+    get:
+      tags:
+      - Interval Results
+      summary: List interval results for a pipeline
+      operationId: listPipelineIntervalResults
+      description: The most common method of accessing pipeline results - lists the interval results produced by a single pipeline, including delivery URLs.
+      parameters:
+      - $ref: '#/components/parameters/PipelineId'
+      responses:
+        '200':
+          description: A list of interval results.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntervalResultList'
+  /interval_results:
+    get:
+      tags:
+      - Interval Results
+      summary: List all interval results
+      operationId: listIntervalResults
+      description: List interval results across all of the caller's pipelines.
+      responses:
+        '200':
+          description: A list of interval results.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntervalResultList'
+components:
+  schemas:
+    Band:
+      type: object
+      properties:
+        name:
+          type: string
+        data_type:
+          type: string
+        unit:
+          type: string
+        spectral_wavelength:
+          type: number
+        no_data_value:
+          type: number
+        raster_width:
+          type: number
+        raster_height:
+          type: number
+    IntervalResult:
+      type: object
+      properties:
+        id:
+          type: string
+        output_id:
+          type: string
+        pipeline_id:
+          type: string
+        status:
+          type: string
+        message:
+          type: string
+        interval:
+          type: string
+        total_interval_cost:
+          type: number
+        probability_of_collection:
+          type: number
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              analytics_url:
+                type: string
+                format: uri
+              metadata_url:
+                type: string
+                format: uri
+              capture_time:
+                type: string
+                format: date-time
+              metadata:
+                type: object
+                properties:
+                  bands:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Band'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    IntervalResultList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/IntervalResult'
+  parameters:
+    PipelineId:
+      name: id
+      in: path
+      required: true
+      description: The id of the pipeline.
+      schema:
+        type: string
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      in: header
+      name: x-api-key

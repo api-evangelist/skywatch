@@ -1,0 +1,194 @@
+openapi: 3.0.3
+info:
+  title: SkyWatch EarthCache Archive Search Cost Estimation API
+  description: 'The EarthCache API gives developers a single, provider-agnostic interface to discover, price, order, and deliver commercial satellite imagery and geospatial data. Create an archive Search over historical imagery, stand up a Pipeline that monitors an area of interest and delivers imagery on a schedule, retrieve interval results with analytics and metadata download URLs, estimate cost, manage reusable output configurations and saved locations, and subscribe to platform events via callback URIs. All requests are authenticated with an `x-api-key` header. Imagery is billed per square kilometre with resolution-based purchase minimums.
+
+
+    This description is authored by API Evangelist for the apis.io network and is grounded in SkyWatch''s public EarthCache API specification (v1.7, https://api-docs.earthcache.com/). It is not an official SkyWatch artifact.'
+  version: '1.7'
+  contact:
+    name: SkyWatch Support
+    url: https://skywatch.com/support
+    email: support@skywatch.com
+servers:
+- url: https://api.skywatch.co/earthcache
+  description: EarthCache production
+security:
+- ApiKey: []
+tags:
+- name: Cost Estimation
+  description: Estimate the cost of locations, intervals, and pipelines.
+paths:
+  /pipelines/calculate:
+    post:
+      tags:
+      - Cost Estimation
+      summary: Calculate pipeline cost and probability of collection
+      operationId: calculatePipeline
+      description: Calculate the cost of the area and intervals of a pipeline, and the probability of collection for any tasking intervals.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PipelineRequest'
+      responses:
+        '200':
+          description: Calculated pipeline cost estimate.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CostEstimate'
+  /price/calculate:
+    post:
+      tags:
+      - Cost Estimation
+      summary: Calculate price of a location and intervals
+      operationId: calculatePrice
+      description: Calculate the cost of a specified location and intervals, taking purchase minimums and pre-purchase discounts into account.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PriceRequest'
+      responses:
+        '200':
+          description: Calculated price.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CostEstimate'
+  /price/{resolution}:
+    get:
+      tags:
+      - Cost Estimation
+      summary: Get price information
+      operationId: getPrice
+      description: Get price information for the caller's plan and an optional resolution.
+      parameters:
+      - name: resolution
+        in: path
+        required: true
+        description: Resolution band (for example low, medium, high, very_high).
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Price information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CostEstimate'
+components:
+  schemas:
+    CostEstimate:
+      type: object
+      properties:
+        cost:
+          type: number
+        currency:
+          type: string
+          example: USD
+        area_km2:
+          type: number
+        probability_of_collection:
+          type: number
+    GeoJSON:
+      type: object
+      description: A GeoJSON geometry (typically a Polygon) describing the AOI.
+      properties:
+        type:
+          type: string
+          example: Polygon
+        coordinates:
+          type: array
+          items: {}
+    PipelineRequest:
+      type: object
+      required:
+      - name
+      - start_date
+      - end_date
+      - aoi
+      - output
+      properties:
+        name:
+          type: string
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+        budget_per_km2:
+          type: number
+        max_cost:
+          type: number
+        cloud_cover_percentage:
+          type: number
+        min_aoi_coverage_percentage:
+          type: number
+        resolution_low:
+          type: number
+        resolution_high:
+          type: number
+        interval:
+          type: string
+          example: 1d
+        result_delivery:
+          type: object
+          properties:
+            max_latency:
+              type: string
+              example: 0d
+            priorities:
+              type: array
+              items:
+                type: string
+              example:
+              - latest
+              - highest_resolution
+              - lowest_cost
+        aoi:
+          $ref: '#/components/schemas/GeoJSON'
+        output:
+          type: object
+          properties:
+            id:
+              type: string
+            format:
+              type: string
+              example: geotiff
+            mosaic:
+              type: string
+              example: 'off'
+        tags:
+          type: array
+          items:
+            type: object
+            properties:
+              label:
+                type: string
+              value:
+                type: string
+        status:
+          type: string
+          example: active
+        sources:
+          type: object
+          properties:
+            include:
+              type: array
+              items:
+                type: string
+              example:
+              - Pleiades
+              - Spot
+              - PlanetScope
+              - Sentinel-2
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      in: header
+      name: x-api-key

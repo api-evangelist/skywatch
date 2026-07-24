@@ -1,0 +1,234 @@
+openapi: 3.0.3
+info:
+  title: SkyWatch EarthCache Archive Search Pipelines API
+  description: 'The EarthCache API gives developers a single, provider-agnostic interface to discover, price, order, and deliver commercial satellite imagery and geospatial data. Create an archive Search over historical imagery, stand up a Pipeline that monitors an area of interest and delivers imagery on a schedule, retrieve interval results with analytics and metadata download URLs, estimate cost, manage reusable output configurations and saved locations, and subscribe to platform events via callback URIs. All requests are authenticated with an `x-api-key` header. Imagery is billed per square kilometre with resolution-based purchase minimums.
+
+
+    This description is authored by API Evangelist for the apis.io network and is grounded in SkyWatch''s public EarthCache API specification (v1.7, https://api-docs.earthcache.com/). It is not an official SkyWatch artifact.'
+  version: '1.7'
+  contact:
+    name: SkyWatch Support
+    url: https://skywatch.com/support
+    email: support@skywatch.com
+servers:
+- url: https://api.skywatch.co/earthcache
+  description: EarthCache production
+security:
+- ApiKey: []
+tags:
+- name: Pipelines
+  description: Standing orders that monitor an AOI and deliver imagery on a schedule.
+paths:
+  /pipelines:
+    get:
+      tags:
+      - Pipelines
+      summary: List pipelines
+      operationId: listPipelines
+      responses:
+        '200':
+          description: A list of pipelines.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PipelineList'
+    post:
+      tags:
+      - Pipelines
+      summary: Create a pipeline
+      operationId: createPipeline
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PipelineRequest'
+      responses:
+        '201':
+          description: Pipeline created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pipeline'
+    delete:
+      tags:
+      - Pipelines
+      summary: Delete multiple pipelines
+      operationId: deletePipelines
+      description: Delete multiple pipelines by id.
+      responses:
+        '204':
+          description: Pipelines deleted.
+  /pipelines/{id}:
+    get:
+      tags:
+      - Pipelines
+      summary: Get a pipeline
+      operationId: getPipeline
+      parameters:
+      - $ref: '#/components/parameters/PipelineId'
+      responses:
+        '200':
+          description: The pipeline.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pipeline'
+    patch:
+      tags:
+      - Pipelines
+      summary: Update a pipeline
+      operationId: updatePipeline
+      parameters:
+      - $ref: '#/components/parameters/PipelineId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PipelineRequest'
+      responses:
+        '200':
+          description: Pipeline updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pipeline'
+    delete:
+      tags:
+      - Pipelines
+      summary: Delete a pipeline
+      operationId: deletePipeline
+      parameters:
+      - $ref: '#/components/parameters/PipelineId'
+      responses:
+        '204':
+          description: Pipeline deleted.
+components:
+  schemas:
+    GeoJSON:
+      type: object
+      description: A GeoJSON geometry (typically a Polygon) describing the AOI.
+      properties:
+        type:
+          type: string
+          example: Polygon
+        coordinates:
+          type: array
+          items: {}
+    PipelineRequest:
+      type: object
+      required:
+      - name
+      - start_date
+      - end_date
+      - aoi
+      - output
+      properties:
+        name:
+          type: string
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+        budget_per_km2:
+          type: number
+        max_cost:
+          type: number
+        cloud_cover_percentage:
+          type: number
+        min_aoi_coverage_percentage:
+          type: number
+        resolution_low:
+          type: number
+        resolution_high:
+          type: number
+        interval:
+          type: string
+          example: 1d
+        result_delivery:
+          type: object
+          properties:
+            max_latency:
+              type: string
+              example: 0d
+            priorities:
+              type: array
+              items:
+                type: string
+              example:
+              - latest
+              - highest_resolution
+              - lowest_cost
+        aoi:
+          $ref: '#/components/schemas/GeoJSON'
+        output:
+          type: object
+          properties:
+            id:
+              type: string
+            format:
+              type: string
+              example: geotiff
+            mosaic:
+              type: string
+              example: 'off'
+        tags:
+          type: array
+          items:
+            type: object
+            properties:
+              label:
+                type: string
+              value:
+                type: string
+        status:
+          type: string
+          example: active
+        sources:
+          type: object
+          properties:
+            include:
+              type: array
+              items:
+                type: string
+              example:
+              - Pleiades
+              - Spot
+              - PlanetScope
+              - Sentinel-2
+    Pipeline:
+      allOf:
+      - $ref: '#/components/schemas/PipelineRequest'
+      - type: object
+        properties:
+          id:
+            type: string
+          created_at:
+            type: string
+            format: date-time
+          updated_at:
+            type: string
+            format: date-time
+    PipelineList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Pipeline'
+  parameters:
+    PipelineId:
+      name: id
+      in: path
+      required: true
+      description: The id of the pipeline.
+      schema:
+        type: string
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      in: header
+      name: x-api-key

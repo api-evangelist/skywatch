@@ -1,0 +1,127 @@
+openapi: 3.0.3
+info:
+  title: SkyWatch EarthCache Archive Search Subscriptions API
+  description: 'The EarthCache API gives developers a single, provider-agnostic interface to discover, price, order, and deliver commercial satellite imagery and geospatial data. Create an archive Search over historical imagery, stand up a Pipeline that monitors an area of interest and delivers imagery on a schedule, retrieve interval results with analytics and metadata download URLs, estimate cost, manage reusable output configurations and saved locations, and subscribe to platform events via callback URIs. All requests are authenticated with an `x-api-key` header. Imagery is billed per square kilometre with resolution-based purchase minimums.
+
+
+    This description is authored by API Evangelist for the apis.io network and is grounded in SkyWatch''s public EarthCache API specification (v1.7, https://api-docs.earthcache.com/). It is not an official SkyWatch artifact.'
+  version: '1.7'
+  contact:
+    name: SkyWatch Support
+    url: https://skywatch.com/support
+    email: support@skywatch.com
+servers:
+- url: https://api.skywatch.co/earthcache
+  description: EarthCache production
+security:
+- ApiKey: []
+tags:
+- name: Subscriptions
+  description: Callback-based subscriptions to EarthCache platform events.
+paths:
+  /subscriptions:
+    get:
+      tags:
+      - Subscriptions
+      summary: List subscriptions
+      operationId: listSubscriptions
+      responses:
+        '200':
+          description: A list of subscriptions.
+    post:
+      tags:
+      - Subscriptions
+      summary: Create a subscription
+      operationId: createSubscription
+      description: Register a callback URI to receive events from the EarthCache platform.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Subscription'
+      responses:
+        '201':
+          description: Subscription created.
+  /subscriptions/{id}:
+    post:
+      tags:
+      - Subscriptions
+      summary: Update a subscription
+      operationId: updateSubscription
+      description: Update subscription properties such as callback_uri and status.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Subscription'
+      responses:
+        '200':
+          description: Subscription updated.
+    delete:
+      tags:
+      - Subscriptions
+      summary: Delete a subscription
+      operationId: deleteSubscription
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Subscription deleted.
+  /subscriptions/{id}/sample:
+    post:
+      tags:
+      - Subscriptions
+      summary: Send subscription samples
+      operationId: sampleSubscription
+      description: Send sample event payloads to the subscription's callback URI.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Sample sent.
+  /callbacks:
+    get:
+      tags:
+      - Subscriptions
+      summary: List callbacks
+      operationId: listCallbacks
+      description: Returns a list of callback invocations over the last 3 months (the retention period).
+      responses:
+        '200':
+          description: A list of callback invocations.
+components:
+  schemas:
+    Subscription:
+      type: object
+      required:
+      - callback_uri
+      properties:
+        id:
+          type: string
+        callback_uri:
+          type: string
+          format: uri
+        status:
+          type: string
+          example: active
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      in: header
+      name: x-api-key

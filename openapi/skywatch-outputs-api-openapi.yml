@@ -1,0 +1,101 @@
+openapi: 3.0.3
+info:
+  title: SkyWatch EarthCache Archive Search Outputs API
+  description: 'The EarthCache API gives developers a single, provider-agnostic interface to discover, price, order, and deliver commercial satellite imagery and geospatial data. Create an archive Search over historical imagery, stand up a Pipeline that monitors an area of interest and delivers imagery on a schedule, retrieve interval results with analytics and metadata download URLs, estimate cost, manage reusable output configurations and saved locations, and subscribe to platform events via callback URIs. All requests are authenticated with an `x-api-key` header. Imagery is billed per square kilometre with resolution-based purchase minimums.
+
+
+    This description is authored by API Evangelist for the apis.io network and is grounded in SkyWatch''s public EarthCache API specification (v1.7, https://api-docs.earthcache.com/). It is not an official SkyWatch artifact.'
+  version: '1.7'
+  contact:
+    name: SkyWatch Support
+    url: https://skywatch.com/support
+    email: support@skywatch.com
+servers:
+- url: https://api.skywatch.co/earthcache
+  description: EarthCache production
+security:
+- ApiKey: []
+tags:
+- name: Outputs
+  description: Reusable output configurations - format, bands, and mosaicking.
+paths:
+  /outputs:
+    get:
+      tags:
+      - Outputs
+      summary: List outputs
+      operationId: listOutputs
+      description: List the reusable output configurations available to the caller.
+      responses:
+        '200':
+          description: A list of outputs.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OutputList'
+  /outputs/{id}:
+    get:
+      tags:
+      - Outputs
+      summary: Get an output
+      operationId: getOutput
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The output configuration.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output'
+components:
+  schemas:
+    Output:
+      type: object
+      required:
+      - id
+      - name
+      - provider
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        private:
+          type: boolean
+        cover_image:
+          type: object
+          properties:
+            url:
+              type: string
+              format: uri
+            alt_text:
+              type: string
+        provider:
+          type: object
+          required:
+          - name
+          properties:
+            name:
+              type: string
+            logo_url:
+              type: string
+              format: uri
+    OutputList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Output'
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      in: header
+      name: x-api-key

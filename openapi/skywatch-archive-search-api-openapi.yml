@@ -1,0 +1,152 @@
+openapi: 3.0.3
+info:
+  title: SkyWatch EarthCache Archive Search API
+  description: 'The EarthCache API gives developers a single, provider-agnostic interface to discover, price, order, and deliver commercial satellite imagery and geospatial data. Create an archive Search over historical imagery, stand up a Pipeline that monitors an area of interest and delivers imagery on a schedule, retrieve interval results with analytics and metadata download URLs, estimate cost, manage reusable output configurations and saved locations, and subscribe to platform events via callback URIs. All requests are authenticated with an `x-api-key` header. Imagery is billed per square kilometre with resolution-based purchase minimums.
+
+
+    This description is authored by API Evangelist for the apis.io network and is grounded in SkyWatch''s public EarthCache API specification (v1.7, https://api-docs.earthcache.com/). It is not an official SkyWatch artifact.'
+  version: '1.7'
+  contact:
+    name: SkyWatch Support
+    url: https://skywatch.com/support
+    email: support@skywatch.com
+servers:
+- url: https://api.skywatch.co/earthcache
+  description: EarthCache production
+security:
+- ApiKey: []
+tags:
+- name: Archive Search
+  description: Query historical imagery and retrieve matching search results.
+paths:
+  /archive/search:
+    post:
+      tags:
+      - Archive Search
+      summary: Create a search
+      operationId: createArchiveSearch
+      description: Creates an asynchronous archive search over historical imagery for an area of interest and date window and returns the search id used to retrieve results.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: Search created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchCreated'
+        '400':
+          description: Invalid search request.
+  /archive/search/{id}/search_results:
+    get:
+      tags:
+      - Archive Search
+      summary: Get search results
+      operationId: getArchiveSearchResults
+      description: Returns the results of a previously created search. Returns 202 while the search is still processing and 200 with results once complete.
+      parameters:
+      - $ref: '#/components/parameters/SearchId'
+      responses:
+        '200':
+          description: Search results.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResults'
+        '202':
+          description: Search still processing; retry after a short delay.
+components:
+  schemas:
+    GeoJSON:
+      type: object
+      description: A GeoJSON geometry (typically a Polygon) describing the AOI.
+      properties:
+        type:
+          type: string
+          example: Polygon
+        coordinates:
+          type: array
+          items: {}
+    SearchResults:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              product_name:
+                type: string
+              source:
+                type: string
+              resolution:
+                type: number
+              cost:
+                type: number
+              preview_url:
+                type: string
+                format: uri
+              thumbnail_url:
+                type: string
+                format: uri
+              start_time:
+                type: string
+                format: date-time
+    SearchCreated:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+    SearchRequest:
+      type: object
+      required:
+      - location
+      - start_date
+      - end_date
+      properties:
+        location:
+          $ref: '#/components/schemas/GeoJSON'
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+        resolution:
+          type: array
+          items:
+            type: string
+          example:
+          - low
+        coverage:
+          type: number
+        interval_length:
+          type: integer
+        order_by:
+          type: array
+          items:
+            type: string
+          example:
+          - resolution
+  parameters:
+    SearchId:
+      name: id
+      in: path
+      required: true
+      description: The id of the search.
+      schema:
+        type: string
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      in: header
+      name: x-api-key
