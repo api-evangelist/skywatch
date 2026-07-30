@@ -13,7 +13,20 @@ description: SkyWatch Space Applications is an Earth observation company whose E
   (format, bands, mosaicking), saved locations, and callback-based subscriptions
   for platform events. Imagery is billed per square kilometre with resolution-based
   minimums.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/skywatch.png
 tags:
 - Satellite Imagery
 - Earth Observation
@@ -26,167 +39,159 @@ modified: '2026-07-04'
 specificationVersion: '0.19'
 apis:
 - aid: skywatch:skywatch-archive-search-api
-  name: SkyWatch EarthCache Archive Search API
-  tags:
-  - Archive
-  - Search
-  - Imagery
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  name: SkyWatch Archive Search API
+  description: Query historical imagery and retrieve matching search results.
   humanURL: https://api-docs.earthcache.com/
   baseURL: https://api.skywatch.co/earthcache
-  properties:
-  - url: https://api-docs.earthcache.com/
-    type: Documentation
-  - url: https://api-docs.earthcache.com/
-    type: APIReference
-  - url: openapi/skywatch-openapi.yml
-    type: OpenAPI
-  - url: collections/skywatch.postman_collection.json
-    type: PostmanCollection
-  - url: collections/skywatch.opencollection.json
-    type: OpenCollection
-  - url: plans/skywatch-plans-pricing.yml
-    type: Plans
-  description: Create an asynchronous archive search over historical satellite
-    imagery for an area of interest and date window, filtering by resolution,
-    coverage, and interval, then poll for the matching search results (scene
-    metadata, previews, and per-scene pricing) across SkyWatch's provider
-    catalog.
-- aid: skywatch:skywatch-pipelines-api
-  name: SkyWatch EarthCache Pipelines API
   tags:
-  - Pipelines
-  - Ordering
-  - Monitoring
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  - Archive Search
+  properties:
+  - type: OpenAPI
+    url: openapi/skywatch-archive-search-api-openapi.yml
+  - type: Documentation
+    url: https://api-docs.earthcache.com/
+  - type: APIReference
+    url: https://api-docs.earthcache.com/
+  - type: PostmanCollection
+    url: collections/skywatch.postman_collection.json
+  - type: OpenCollection
+    url: collections/skywatch.opencollection.json
+  - type: Plans
+    url: plans/skywatch-plans-pricing.yml
+  - type: Pricing
+    url: https://skywatch.com/earthcache/pricing/
+- aid: skywatch:skywatch-cost-estimation-api
+  name: SkyWatch Cost Estimation API
+  description: Estimate the cost of locations, intervals, and pipelines.
   humanURL: https://api-docs.earthcache.com/
   baseURL: https://api.skywatch.co/earthcache
+  tags:
+  - Cost Estimation
   properties:
-  - url: https://api-docs.earthcache.com/
-    type: Documentation
-  - url: openapi/skywatch-openapi.yml
-    type: OpenAPI
-  - url: collections/skywatch.postman_collection.json
-    type: PostmanCollection
-  - url: collections/skywatch.opencollection.json
-    type: OpenCollection
-  description: Create, list, get, update, and delete pipelines - standing orders
-    that monitor an area of interest between a start and end date, apply budget,
-    cloud-cover, resolution, source, and interval constraints, and deliver
-    matching imagery on a recurring schedule to a configured output.
+  - type: OpenAPI
+    url: openapi/skywatch-cost-estimation-api-openapi.yml
+  - type: Documentation
+    url: https://api-docs.earthcache.com/
+  - type: APIReference
+    url: https://api-docs.earthcache.com/
+  - type: PostmanCollection
+    url: collections/skywatch.postman_collection.json
+  - type: OpenCollection
+    url: collections/skywatch.opencollection.json
+  - type: Plans
+    url: plans/skywatch-plans-pricing.yml
+  - type: Pricing
+    url: https://skywatch.com/earthcache/pricing/
 - aid: skywatch:skywatch-interval-results-api
-  name: SkyWatch EarthCache Interval Results & Delivery API
+  name: SkyWatch Interval Results API
+  description: Results and delivery URLs produced by pipeline intervals.
+  humanURL: https://api-docs.earthcache.com/
+  baseURL: https://api.skywatch.co/earthcache
   tags:
   - Interval Results
-  - Delivery
-  - Downloads
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://api-docs.earthcache.com/
-  baseURL: https://api.skywatch.co/earthcache
   properties:
-  - url: https://api-docs.earthcache.com/
-    type: Documentation
-  - url: openapi/skywatch-openapi.yml
-    type: OpenAPI
-  - url: collections/skywatch.postman_collection.json
-    type: PostmanCollection
-  - url: collections/skywatch.opencollection.json
-    type: OpenCollection
-  description: Retrieve the results produced by pipeline intervals - either scoped
-    to a single pipeline or across all pipelines - including per-interval status,
-    cost, probability of collection, band metadata, and the analytics and
-    metadata download URLs used to deliver each delivered image.
-- aid: skywatch:skywatch-cost-estimation-api
-  name: SkyWatch EarthCache Cost Estimation API
-  tags:
-  - Pricing
-  - Cost
-  - Estimation
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://api-docs.earthcache.com/
-  baseURL: https://api.skywatch.co/earthcache
-  properties:
-  - url: https://skywatch.com/earthcache/pricing/
-    type: Pricing
-  - url: https://api-docs.earthcache.com/
-    type: Documentation
-  - url: openapi/skywatch-openapi.yml
-    type: OpenAPI
-  - url: collections/skywatch.postman_collection.json
-    type: PostmanCollection
-  - url: collections/skywatch.opencollection.json
-    type: OpenCollection
-  description: Estimate cost before ordering - calculate the price of a location
-    and intervals (honoring purchase minimums and pre-purchase discounts),
-    calculate a full pipeline's cost together with probability of collection for
-    tasking intervals, and look up per-resolution price information for the
-    caller's plan.
-- aid: skywatch:skywatch-outputs-api
-  name: SkyWatch EarthCache Outputs & Bands API
-  tags:
-  - Outputs
-  - Bands
-  - Formats
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://api-docs.earthcache.com/
-  baseURL: https://api.skywatch.co/earthcache
-  properties:
-  - url: https://api-docs.earthcache.com/
-    type: Documentation
-  - url: openapi/skywatch-openapi.yml
-    type: OpenAPI
-  - url: collections/skywatch.postman_collection.json
-    type: PostmanCollection
-  - url: collections/skywatch.opencollection.json
-    type: OpenCollection
-  description: List and retrieve output configurations - the reusable, named
-    definitions (format such as GeoTIFF, band selection, and mosaic behavior)
-    that a pipeline references to control how delivered imagery is rendered and
-    packaged.
+  - type: OpenAPI
+    url: openapi/skywatch-interval-results-api-openapi.yml
+  - type: Documentation
+    url: https://api-docs.earthcache.com/
+  - type: APIReference
+    url: https://api-docs.earthcache.com/
+  - type: PostmanCollection
+    url: collections/skywatch.postman_collection.json
+  - type: OpenCollection
+    url: collections/skywatch.opencollection.json
+  - type: Plans
+    url: plans/skywatch-plans-pricing.yml
+  - type: Pricing
+    url: https://skywatch.com/earthcache/pricing/
 - aid: skywatch:skywatch-locations-api
-  name: SkyWatch EarthCache Locations API
+  name: SkyWatch Locations API
+  description: Reusable server-side areas of interest from KML or GeoJSON.
+  humanURL: https://api-docs.earthcache.com/
+  baseURL: https://api.skywatch.co/earthcache
   tags:
   - Locations
-  - AOI
-  - GeoJSON
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  properties:
+  - type: OpenAPI
+    url: openapi/skywatch-locations-api-openapi.yml
+  - type: Documentation
+    url: https://api-docs.earthcache.com/
+  - type: APIReference
+    url: https://api-docs.earthcache.com/
+  - type: PostmanCollection
+    url: collections/skywatch.postman_collection.json
+  - type: OpenCollection
+    url: collections/skywatch.opencollection.json
+  - type: Plans
+    url: plans/skywatch-plans-pricing.yml
+  - type: Pricing
+    url: https://skywatch.com/earthcache/pricing/
+- aid: skywatch:skywatch-outputs-api
+  name: SkyWatch Outputs API
+  description: Reusable output configurations - format, bands, and mosaicking.
   humanURL: https://api-docs.earthcache.com/
   baseURL: https://api.skywatch.co/earthcache
+  tags:
+  - Outputs
   properties:
-  - url: https://api-docs.earthcache.com/
-    type: Documentation
-  - url: openapi/skywatch-openapi.yml
-    type: OpenAPI
-  - url: collections/skywatch.postman_collection.json
-    type: PostmanCollection
-  - url: collections/skywatch.opencollection.json
-    type: OpenCollection
-  description: Create, list, fetch, update, and delete saved locations - the
-    Locations API abstracts spatial data supplied as KML or GeoJSON into a
-    reusable server-side area-of-interest instance that Search and Pipelines can
-    reference by id.
+  - type: OpenAPI
+    url: openapi/skywatch-outputs-api-openapi.yml
+  - type: Documentation
+    url: https://api-docs.earthcache.com/
+  - type: APIReference
+    url: https://api-docs.earthcache.com/
+  - type: PostmanCollection
+    url: collections/skywatch.postman_collection.json
+  - type: OpenCollection
+    url: collections/skywatch.opencollection.json
+  - type: Plans
+    url: plans/skywatch-plans-pricing.yml
+  - type: Pricing
+    url: https://skywatch.com/earthcache/pricing/
+- aid: skywatch:skywatch-pipelines-api
+  name: SkyWatch Pipelines API
+  description: Standing orders that monitor an AOI and deliver imagery on a schedule.
+  humanURL: https://api-docs.earthcache.com/
+  baseURL: https://api.skywatch.co/earthcache
+  tags:
+  - Pipelines
+  properties:
+  - type: OpenAPI
+    url: openapi/skywatch-pipelines-api-openapi.yml
+  - type: Documentation
+    url: https://api-docs.earthcache.com/
+  - type: APIReference
+    url: https://api-docs.earthcache.com/
+  - type: PostmanCollection
+    url: collections/skywatch.postman_collection.json
+  - type: OpenCollection
+    url: collections/skywatch.opencollection.json
+  - type: Plans
+    url: plans/skywatch-plans-pricing.yml
+  - type: Pricing
+    url: https://skywatch.com/earthcache/pricing/
 - aid: skywatch:skywatch-subscriptions-api
-  name: SkyWatch EarthCache Subscriptions & Callbacks API
+  name: SkyWatch Subscriptions API
+  description: Callback-based subscriptions to EarthCache platform events.
+  humanURL: https://api-docs.earthcache.com/
+  baseURL: https://api.skywatch.co/earthcache
   tags:
   - Subscriptions
-  - Callbacks
-  - Webhooks
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://api-docs.earthcache.com/
-  baseURL: https://api.skywatch.co/earthcache
   properties:
-  - url: https://api-docs.earthcache.com/
-    type: Documentation
-  - url: openapi/skywatch-openapi.yml
-    type: OpenAPI
-  - url: collections/skywatch.postman_collection.json
-    type: PostmanCollection
-  - url: collections/skywatch.opencollection.json
-    type: OpenCollection
-  description: Register a callback URI to receive EarthCache platform events
-    (HTTP webhooks) - create, list, update, and delete subscriptions, send
-    sample payloads to a subscription, and list the callback invocations made
-    over the last three months.
+  - type: OpenAPI
+    url: openapi/skywatch-subscriptions-api-openapi.yml
+  - type: Documentation
+    url: https://api-docs.earthcache.com/
+  - type: APIReference
+    url: https://api-docs.earthcache.com/
+  - type: PostmanCollection
+    url: collections/skywatch.postman_collection.json
+  - type: OpenCollection
+    url: collections/skywatch.opencollection.json
+  - type: Plans
+    url: plans/skywatch-plans-pricing.yml
+  - type: Pricing
+    url: https://skywatch.com/earthcache/pricing/
 common:
 - type: AgenticAccess
   url: agentic-access/skywatch-agentic-access.yml
