@@ -1,0 +1,28 @@
+{
+  "provider": "skywatch",
+  "sources": [
+    "skywatch-archive-search-api-openapi.yml",
+    "skywatch-cost-estimation-api-openapi.yml",
+    "skywatch-interval-results-api-openapi.yml",
+    "skywatch-locations-api-openapi.yml",
+    "skywatch-outputs-api-openapi.yml",
+    "skywatch-pipelines-api-openapi.yml",
+    "skywatch-subscriptions-api-openapi.yml"
+  ],
+  "outputs": [
+    "skywatch-archive-search-api-openapi.yml",
+    "skywatch-cost-estimation-api-openapi.yml",
+    "skywatch-interval-results-api-openapi.yml",
+    "skywatch-locations-api-openapi.yml",
+    "skywatch-outputs-api-openapi.yml",
+    "skywatch-pipelines-api-openapi.yml",
+    "skywatch-subscriptions-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [
+    "skywatch-cost-estimation-api-openapi.yml: dangling $ref: #/components/schemas/PriceRequest"
+  ],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
