@@ -1,0 +1,225 @@
+{
+  "item": [
+    {
+      "id": "173a6fb8-1272-472f-97a9-cbb1e63364ec",
+      "name": "Interval Results",
+      "description": {
+        "content": "Results and delivery URLs produced by pipeline intervals.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ba63a29e-c5d6-490d-961a-8c397f22d5f3",
+          "name": "List interval results for a pipeline",
+          "request": {
+            "name": "List interval results for a pipeline",
+            "description": {
+              "content": "The most common method of accessing pipeline results - lists the interval results produced by a single pipeline, including delivery URLs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pipelines",
+                ":id",
+                "interval_results"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the pipeline."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "18dc6da6-27f8-4a4a-a614-81b5bb9c22be",
+              "name": "A list of interval results.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pipelines",
+                    ":id",
+                    "interval_results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The id of the pipeline."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"output_id\": \"string\",\n      \"pipeline_id\": \"string\",\n      \"status\": \"string\",\n      \"message\": \"string\",\n      \"interval\": \"string\",\n      \"total_interval_cost\": 4181.157578110676,\n      \"probability_of_collection\": 4578.973906349214,\n      \"results\": [\n        {\n          \"analytics_url\": \"http://uzsqsrNgKarSHDciAIdlfSuEYNtP.xpNKADCeyOfS7jm8af1pO7t2mOn3fxJ5\",\n          \"metadata_url\": \"https://IBC.jmqvsmN8UdurD\",\n          \"capture_time\": \"2019-03-01T07:07:23.634Z\",\n          \"metadata\": {\n            \"bands\": [\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"data_type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"unit\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"spectral_wavelength\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"no_data_value\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"raster_width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"raster_height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"data_type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"unit\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"spectral_wavelength\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"no_data_value\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"raster_width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"raster_height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        },\n        {\n          \"analytics_url\": \"https://mvLCrcBcFVybYVux.mfnehGa0yUWWGlJTS\",\n          \"metadata_url\": \"http://B.vbvk5gSWm6fgjwREvrcDFV0-t+NtthjjtIJHCHzqbgS8l,qMxA\",\n          \"capture_time\": \"2005-01-23T07:12:04.149Z\",\n          \"metadata\": {\n            \"bands\": [\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"data_type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"unit\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"spectral_wavelength\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"no_data_value\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"raster_width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"raster_height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"data_type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"unit\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"spectral_wavelength\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"no_data_value\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"raster_width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"raster_height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        }\n      ],\n      \"created_at\": \"1978-10-22T10:57:09.202Z\",\n      \"updated_at\": \"1999-10-21T10:55:02.550Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"output_id\": \"string\",\n      \"pipeline_id\": \"string\",\n      \"status\": \"string\",\n      \"message\": \"string\",\n      \"interval\": \"string\",\n      \"total_interval_cost\": 4356.439831964438,\n      \"probability_of_collection\": 8771.260276863533,\n      \"results\": [\n        {\n          \"analytics_url\": \"http://QzvaMJr.hieusKguFLoxXPiCz9-2U\",\n          \"metadata_url\": \"https://V.nzasFzj8IOESYZBF8dZl,h8jn\",\n          \"capture_time\": \"1961-12-05T12:55:44.486Z\",\n          \"metadata\": {\n            \"bands\": [\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"data_type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"unit\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"spectral_wavelength\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"no_data_value\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"raster_width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"raster_height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"data_type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"unit\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"spectral_wavelength\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"no_data_value\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"raster_width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"raster_height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        },\n        {\n          \"analytics_url\": \"https://CeVNcczHzbp.rqjk8RQrQ,eAGoIgrsLD.KFZEV7NW55A.w8k\",\n          \"metadata_url\": \"http://xRWTLOFUxgLkLnefNbZKm.tsrib-vWfPiMTI38SH,6ZR5GosZAsynPlG\",\n          \"capture_time\": \"2017-01-31T22:27:32.523Z\",\n          \"metadata\": {\n            \"bands\": [\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"data_type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"unit\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"spectral_wavelength\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"no_data_value\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"raster_width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"raster_height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"data_type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"unit\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"spectral_wavelength\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"no_data_value\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"raster_width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"raster_height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        }\n      ],\n      \"created_at\": \"1947-11-04T18:25:22.837Z\",\n      \"updated_at\": \"1995-06-05T02:53:47.031Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0e420f3b-d177-4170-b393-8df701e2fb5e",
+          "name": "List all interval results",
+          "request": {
+            "name": "List all interval results",
+            "description": {
+              "content": "List interval results across all of the caller's pipelines.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "interval_results"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5e5c1ad6-b1c2-4674-91d7-c07870c552c9",
+              "name": "A list of interval results.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interval_results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"output_id\": \"string\",\n      \"pipeline_id\": \"string\",\n      \"status\": \"string\",\n      \"message\": \"string\",\n      \"interval\": \"string\",\n      \"total_interval_cost\": 6462.283606842858,\n      \"probability_of_collection\": 1599.4388979860664,\n      \"results\": [\n        {\n          \"analytics_url\": \"https://DLPGpgTQzSZFPk.acegQf31mosI+ZA-ru,dM2IbVMGbC\",\n          \"metadata_url\": \"http://XsHOpGaizwUGlRLXKIJtTDbGOZHsNKUgV.suvoKpUi0hs+.hfn8+Q,pr+GRZBmWQ-HVuSqpviAzE.RmpYG.r1SuV\",\n          \"capture_time\": \"1978-09-07T07:00:35.149Z\",\n          \"metadata\": {\n            \"bands\": [\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"data_type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"unit\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"spectral_wavelength\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"no_data_value\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"raster_width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"raster_height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"data_type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"unit\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"spectral_wavelength\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"no_data_value\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"raster_width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"raster_height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        },\n        {\n          \"analytics_url\": \"http://NWVhknAMAifqzGjrHsiOjMMuWEQWM.waemID\",\n          \"metadata_url\": \"https://bQRsbem.rgtnuDw6SDGMZ8dyObSnAelDNCAb7K74hAQmZthpCrExevlHtcud.013rP-225wnQ\",\n          \"capture_time\": \"2016-10-19T16:03:08.897Z\",\n          \"metadata\": {\n            \"bands\": [\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"data_type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"unit\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"spectral_wavelength\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"no_data_value\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"raster_width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"raster_height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"data_type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"unit\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"spectral_wavelength\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"no_data_value\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"raster_width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"raster_height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        }\n      ],\n      \"created_at\": \"2018-10-07T17:33:08.058Z\",\n      \"updated_at\": \"1978-12-22T19:17:05.571Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"output_id\": \"string\",\n      \"pipeline_id\": \"string\",\n      \"status\": \"string\",\n      \"message\": \"string\",\n      \"interval\": \"string\",\n      \"total_interval_cost\": 3412.0554554021355,\n      \"probability_of_collection\": 1422.8480286142287,\n      \"results\": [\n        {\n          \"analytics_url\": \"https://VbbEOMYJSAWjolJSoPDNbArEE.yemDp8W6KyJj2TeGz75I,NFsNvWJ,ou3qLcms,kxAA+elqqxVVd\",\n          \"metadata_url\": \"http://aIGdcqfAvXpVePk.awIOk\",\n          \"capture_time\": \"1969-11-27T01:45:08.639Z\",\n          \"metadata\": {\n            \"bands\": [\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"data_type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"unit\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"spectral_wavelength\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"no_data_value\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"raster_width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"raster_height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"data_type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"unit\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"spectral_wavelength\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"no_data_value\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"raster_width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"raster_height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        },\n        {\n          \"analytics_url\": \"http://iNNAThUqmnndTbFkTBZb.kfnytTy4qdDmUZcd.kly3b7zarWUw50aXnCreYb.1BhA7q\",\n          \"metadata_url\": \"http://PGgUfocKFGgZJgRuOczoM.bvwfUkQHpHccexVN9mdDRjdo4zQh2uk,PQL-wwAzQpmjzNQ5N,NYJpe0Z,7wMKTlJiZ\",\n          \"capture_time\": \"1967-07-31T08:15:40.505Z\",\n          \"metadata\": {\n            \"bands\": [\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"data_type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"unit\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"spectral_wavelength\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"no_data_value\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"raster_width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"raster_height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"name\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"data_type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"unit\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"spectral_wavelength\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"no_data_value\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"raster_width\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"raster_height\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        }\n      ],\n      \"created_at\": \"1961-10-09T13:13:22.798Z\",\n      \"updated_at\": \"1951-10-24T03:14:25.789Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.skywatch.co/earthcache",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5df1bfa8-6013-4dd9-b08d-e6264fb0a713",
+    "name": "SkyWatch EarthCache Archive Search Interval Results API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The EarthCache API gives developers a single, provider-agnostic interface to discover, price, order, and deliver commercial satellite imagery and geospatial data. Create an archive Search over historical imagery, stand up a Pipeline that monitors an area of interest and delivers imagery on a schedule, retrieve interval results with analytics and metadata download URLs, estimate cost, manage reusable output configurations and saved locations, and subscribe to platform events via callback URIs. All requests are authenticated with an `x-api-key` header. Imagery is billed per square kilometre with resolution-based purchase minimums.\n\nThis description is authored by API Evangelist for the apis.io network and is grounded in SkyWatch's public EarthCache API specification (v1.7, https://api-docs.earthcache.com/). It is not an official SkyWatch artifact.\n\nContact Support:\n Name: SkyWatch Support\n Email: support@skywatch.com",
+      "type": "text/plain"
+    }
+  }
+}

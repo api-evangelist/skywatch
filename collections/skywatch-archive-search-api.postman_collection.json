@@ -1,0 +1,348 @@
+{
+  "item": [
+    {
+      "id": "275cbb8d-58a1-4ba9-8c37-7e5e44fc5cd2",
+      "name": "Archive Search",
+      "description": {
+        "content": "Query historical imagery and retrieve matching search results.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a953e731-536f-4931-bdd3-1609dbbb1b91",
+          "name": "Create a search",
+          "request": {
+            "name": "Create a search",
+            "description": {
+              "content": "Creates an asynchronous archive search over historical imagery for an area of interest and date window and returns the search id used to retrieve results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "archive",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"location\": {\n    \"type\": \"<string>\"\n  },\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"resolution\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"coverage\": \"<number>\",\n  \"interval_length\": \"<integer>\",\n  \"order_by\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d0e33b64-36c3-4ba8-b8ce-ae966b45b6e6",
+              "name": "Search created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "archive",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"location\": {\n    \"type\": \"Polygon\"\n  },\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"resolution\": [\n    \"low\"\n  ],\n  \"coverage\": \"<number>\",\n  \"interval_length\": \"<integer>\",\n  \"order_by\": [\n    \"resolution\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "60d5d0f5-84d6-42b6-a554-024b587557f4",
+              "name": "Invalid search request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "archive",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"location\": {\n    \"type\": \"Polygon\"\n  },\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"resolution\": [\n    \"low\"\n  ],\n  \"coverage\": \"<number>\",\n  \"interval_length\": \"<integer>\",\n  \"order_by\": [\n    \"resolution\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "99043678-335d-48dd-8621-06ef8e5755ed",
+          "name": "Get search results",
+          "request": {
+            "name": "Get search results",
+            "description": {
+              "content": "Returns the results of a previously created search. Returns 202 while the search is still processing and 200 with results once complete.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "archive",
+                "search",
+                ":id",
+                "search_results"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the search."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "32f7c74c-6db9-44da-8d5d-d1236292ec4a",
+              "name": "Search results.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "archive",
+                    "search",
+                    ":id",
+                    "search_results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The id of the search."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"product_name\": \"string\",\n      \"source\": \"string\",\n      \"resolution\": 313.43037551918695,\n      \"cost\": 344.7746109204064,\n      \"preview_url\": \"http://UVLwDnFrFyyTlnhFIywTJ.hwspG3LA3XTIM6x59cxFSlVSNLL\",\n      \"thumbnail_url\": \"https://gjefxmNszF.xhqdjq1sys\",\n      \"start_time\": \"1974-11-28T14:41:49.997Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"product_name\": \"string\",\n      \"source\": \"string\",\n      \"resolution\": 4600.324485371805,\n      \"cost\": 6718.066082389057,\n      \"preview_url\": \"https://uIxdISLx.uglXKHwJj.p.fP\",\n      \"thumbnail_url\": \"https://qbLSDGIwTlEbEeMnEKArFkdmSUMvtu.hrceJVj5RZRv5uM7\",\n      \"start_time\": \"2006-02-09T15:34:58.548Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "690d5312-cb14-45a7-a0c5-f16597d237b7",
+              "name": "Search still processing; retry after a short delay.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "archive",
+                    "search",
+                    ":id",
+                    "search_results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The id of the search."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.skywatch.co/earthcache",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "120e420a-19d0-407b-a5b0-f6add8ea7a9e",
+    "name": "SkyWatch EarthCache Archive Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The EarthCache API gives developers a single, provider-agnostic interface to discover, price, order, and deliver commercial satellite imagery and geospatial data. Create an archive Search over historical imagery, stand up a Pipeline that monitors an area of interest and delivers imagery on a schedule, retrieve interval results with analytics and metadata download URLs, estimate cost, manage reusable output configurations and saved locations, and subscribe to platform events via callback URIs. All requests are authenticated with an `x-api-key` header. Imagery is billed per square kilometre with resolution-based purchase minimums.\n\nThis description is authored by API Evangelist for the apis.io network and is grounded in SkyWatch's public EarthCache API specification (v1.7, https://api-docs.earthcache.com/). It is not an official SkyWatch artifact.\n\nContact Support:\n Name: SkyWatch Support\n Email: support@skywatch.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,220 @@
+{
+  "item": [
+    {
+      "id": "b5c52ee5-eee4-4e81-aa53-5cab87f82af5",
+      "name": "Outputs",
+      "description": {
+        "content": "Reusable output configurations - format, bands, and mosaicking.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4c6079ca-1a3c-44cd-a23e-85f4221aa9e2",
+          "name": "List outputs",
+          "request": {
+            "name": "List outputs",
+            "description": {
+              "content": "List the reusable output configurations available to the caller.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "outputs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d8079d0a-d61c-4fd4-aa9d-d500b9641591",
+              "name": "A list of outputs.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "outputs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"provider\": {\n        \"name\": \"string\",\n        \"logo_url\": \"http://ELgQrNygzkIunCRhmcZrpuWox.zennSrLzS4hc4g\"\n      },\n      \"description\": \"string\",\n      \"private\": true,\n      \"cover_image\": {\n        \"url\": \"https://ORrSHJjWpaHInJGAqhJlSMMaEnGJ.qntg0cyjHyHpG9cxwkW0ba8oRG3dXJdrCoeUi7f9bc7C\",\n        \"alt_text\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"provider\": {\n        \"name\": \"string\",\n        \"logo_url\": \"https://phGETSQ.ihrufZvCdiC\"\n      },\n      \"description\": \"string\",\n      \"private\": false,\n      \"cover_image\": {\n        \"url\": \"https://YXRzS.ipzowiwjzYNoVNR33qdgCTskPiG3+ioLgfOsSChilYadIarEzcvmfJINE+V76RDhO.TOMmyyRCvKZKM\",\n        \"alt_text\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a8a2af2b-621d-45df-98c1-81b9bda294c6",
+          "name": "Get an output",
+          "request": {
+            "name": "Get an output",
+            "description": {},
+            "url": {
+              "path": [
+                "outputs",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ee53fff1-e4bd-4d90-b89a-17655a4b100b",
+              "name": "The output configuration.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "outputs",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"provider\": {\n    \"name\": \"string\",\n    \"logo_url\": \"https://OGaoMGJBpxFrJvUkLycstDJb.rpyAZ1wYcWBPqtcrqz.pLf-KeNJMiMiuqCUhcI\"\n  },\n  \"description\": \"string\",\n  \"private\": false,\n  \"cover_image\": {\n    \"url\": \"http://FIEEKdghYLxbNQn.wwMJX2qsvsxqswabfsLlBtj7qYK4co7AKjERLHRLTQTc.AmrvQjOfIrr8beC\",\n    \"alt_text\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.skywatch.co/earthcache",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c5110fd5-3ad6-42b7-b66d-40859b8a035f",
+    "name": "SkyWatch EarthCache Archive Search Outputs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The EarthCache API gives developers a single, provider-agnostic interface to discover, price, order, and deliver commercial satellite imagery and geospatial data. Create an archive Search over historical imagery, stand up a Pipeline that monitors an area of interest and delivers imagery on a schedule, retrieve interval results with analytics and metadata download URLs, estimate cost, manage reusable output configurations and saved locations, and subscribe to platform events via callback URIs. All requests are authenticated with an `x-api-key` header. Imagery is billed per square kilometre with resolution-based purchase minimums.\n\nThis description is authored by API Evangelist for the apis.io network and is grounded in SkyWatch's public EarthCache API specification (v1.7, https://api-docs.earthcache.com/). It is not an official SkyWatch artifact.\n\nContact Support:\n Name: SkyWatch Support\n Email: support@skywatch.com",
+      "type": "text/plain"
+    }
+  }
+}

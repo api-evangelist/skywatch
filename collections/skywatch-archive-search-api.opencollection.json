@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SkyWatch EarthCache Archive Search API",
+    "version": "1.7"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Archive Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a search",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.skywatch.co/earthcache/archive/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an asynchronous archive search over historical imagery for an area of interest and date window and returns the search id used to retrieve results."
+        },
+        {
+          "info": {
+            "name": "Get search results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.skywatch.co/earthcache/archive/search/:id/search_results",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the search."
+              }
+            ]
+          },
+          "docs": "Returns the results of a previously created search. Returns 202 while the search is still processing and 200 with results once complete."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

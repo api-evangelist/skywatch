@@ -1,0 +1,75 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SkyWatch EarthCache Archive Search Cost Estimation API",
+    "version": "1.7"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cost Estimation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Calculate pipeline cost and probability of collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.skywatch.co/earthcache/pipelines/calculate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Calculate the cost of the area and intervals of a pipeline, and the probability of collection for any tasking intervals."
+        },
+        {
+          "info": {
+            "name": "Calculate price of a location and intervals",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.skywatch.co/earthcache/price/calculate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Calculate the cost of a specified location and intervals, taking purchase minimums and pre-purchase discounts into account."
+        },
+        {
+          "info": {
+            "name": "Get price information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.skywatch.co/earthcache/price/:resolution",
+            "params": [
+              {
+                "name": "resolution",
+                "value": "",
+                "type": "path",
+                "description": "Resolution band (for example low, medium, high, very_high)."
+              }
+            ]
+          },
+          "docs": "Get price information for the caller's plan and an optional resolution."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

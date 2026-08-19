@@ -1,0 +1,578 @@
+{
+  "item": [
+    {
+      "id": "c7674aa0-40a9-439a-b54e-c5daf813e456",
+      "name": "Pipelines",
+      "description": {
+        "content": "Standing orders that monitor an AOI and deliver imagery on a schedule.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8d55a905-6694-468c-9af7-689053d6bdf8",
+          "name": "List pipelines",
+          "request": {
+            "name": "List pipelines",
+            "description": {},
+            "url": {
+              "path": [
+                "pipelines"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bcb23fe3-ed0b-491a-9f0f-68e6cf911fca",
+              "name": "A list of pipelines.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pipelines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"name\": \"string\",\n      \"start_date\": \"1970-09-23\",\n      \"end_date\": \"1998-03-05\",\n      \"aoi\": {\n        \"type\": \"Polygon\"\n      },\n      \"output\": {\n        \"id\": \"string\",\n        \"format\": \"geotiff\",\n        \"mosaic\": \"off\"\n      },\n      \"budget_per_km2\": 3136.31955396947,\n      \"max_cost\": 4148.453088775902,\n      \"cloud_cover_percentage\": 6376.146904171378,\n      \"min_aoi_coverage_percentage\": 2743.2231660028137,\n      \"resolution_low\": 1596.6234020969039,\n      \"resolution_high\": 3905.3403917199794,\n      \"interval\": \"1d\",\n      \"result_delivery\": {\n        \"max_latency\": \"0d\",\n        \"priorities\": [\n          \"latest\",\n          \"highest_resolution\",\n          \"lowest_cost\"\n        ]\n      },\n      \"tags\": [\n        {\n          \"label\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"label\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"status\": \"active\",\n      \"sources\": {\n        \"include\": [\n          \"Pleiades\",\n          \"Spot\",\n          \"PlanetScope\",\n          \"Sentinel-2\"\n        ]\n      },\n      \"id\": \"string\",\n      \"created_at\": \"2009-05-27T01:37:53.773Z\",\n      \"updated_at\": \"1953-03-07T16:46:17.310Z\"\n    },\n    {\n      \"name\": \"string\",\n      \"start_date\": \"1993-03-24\",\n      \"end_date\": \"1973-02-15\",\n      \"aoi\": {\n        \"type\": \"Polygon\"\n      },\n      \"output\": {\n        \"id\": \"string\",\n        \"format\": \"geotiff\",\n        \"mosaic\": \"off\"\n      },\n      \"budget_per_km2\": 2970.7899803356377,\n      \"max_cost\": 1526.6114326762147,\n      \"cloud_cover_percentage\": 7818.684744145139,\n      \"min_aoi_coverage_percentage\": 9939.676980090724,\n      \"resolution_low\": 3958.2378553933117,\n      \"resolution_high\": 661.0121977805661,\n      \"interval\": \"1d\",\n      \"result_delivery\": {\n        \"max_latency\": \"0d\",\n        \"priorities\": [\n          \"latest\",\n          \"highest_resolution\",\n          \"lowest_cost\"\n        ]\n      },\n      \"tags\": [\n        {\n          \"label\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"label\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"status\": \"active\",\n      \"sources\": {\n        \"include\": [\n          \"Pleiades\",\n          \"Spot\",\n          \"PlanetScope\",\n          \"Sentinel-2\"\n        ]\n      },\n      \"id\": \"string\",\n      \"created_at\": \"2007-09-20T04:11:19.553Z\",\n      \"updated_at\": \"1967-04-23T00:31:56.759Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6323059e-3012-4403-9547-f1f117d49b47",
+          "name": "Create a pipeline",
+          "request": {
+            "name": "Create a pipeline",
+            "description": {},
+            "url": {
+              "path": [
+                "pipelines"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"aoi\": {\n    \"type\": \"<string>\"\n  },\n  \"output\": {\n    \"id\": \"<string>\",\n    \"format\": \"<string>\",\n    \"mosaic\": \"<string>\"\n  },\n  \"budget_per_km2\": \"<number>\",\n  \"max_cost\": \"<number>\",\n  \"cloud_cover_percentage\": \"<number>\",\n  \"min_aoi_coverage_percentage\": \"<number>\",\n  \"resolution_low\": \"<number>\",\n  \"resolution_high\": \"<number>\",\n  \"interval\": \"<string>\",\n  \"result_delivery\": {\n    \"max_latency\": \"<string>\",\n    \"priorities\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"tags\": [\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"status\": \"<string>\",\n  \"sources\": {\n    \"include\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "af36d3e6-de18-4d68-a92c-b62dfae1ea1a",
+              "name": "Pipeline created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pipelines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"aoi\": {\n    \"type\": \"Polygon\"\n  },\n  \"output\": {\n    \"id\": \"<string>\",\n    \"format\": \"geotiff\",\n    \"mosaic\": \"off\"\n  },\n  \"budget_per_km2\": \"<number>\",\n  \"max_cost\": \"<number>\",\n  \"cloud_cover_percentage\": \"<number>\",\n  \"min_aoi_coverage_percentage\": \"<number>\",\n  \"resolution_low\": \"<number>\",\n  \"resolution_high\": \"<number>\",\n  \"interval\": \"1d\",\n  \"result_delivery\": {\n    \"max_latency\": \"0d\",\n    \"priorities\": [\n      \"latest\",\n      \"highest_resolution\",\n      \"lowest_cost\"\n    ]\n  },\n  \"tags\": [\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"status\": \"active\",\n  \"sources\": {\n    \"include\": [\n      \"Pleiades\",\n      \"Spot\",\n      \"PlanetScope\",\n      \"Sentinel-2\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"<string>\",\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"aoi\": {\n    \"type\": \"Polygon\"\n  },\n  \"output\": {\n    \"id\": \"<string>\",\n    \"format\": \"geotiff\",\n    \"mosaic\": \"off\"\n  },\n  \"budget_per_km2\": \"<number>\",\n  \"max_cost\": \"<number>\",\n  \"cloud_cover_percentage\": \"<number>\",\n  \"min_aoi_coverage_percentage\": \"<number>\",\n  \"resolution_low\": \"<number>\",\n  \"resolution_high\": \"<number>\",\n  \"interval\": \"1d\",\n  \"result_delivery\": {\n    \"max_latency\": \"0d\",\n    \"priorities\": [\n      \"latest\",\n      \"highest_resolution\",\n      \"lowest_cost\"\n    ]\n  },\n  \"tags\": [\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"status\": \"active\",\n  \"sources\": {\n    \"include\": [\n      \"Pleiades\",\n      \"Spot\",\n      \"PlanetScope\",\n      \"Sentinel-2\"\n    ]\n  },\n  \"id\": \"string\",\n  \"created_at\": \"1980-12-03T17:49:07.871Z\",\n  \"updated_at\": \"1995-03-16T03:11:08.004Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "29a71198-e503-4f27-81a5-a6bc49709bb6",
+          "name": "Delete multiple pipelines",
+          "request": {
+            "name": "Delete multiple pipelines",
+            "description": {
+              "content": "Delete multiple pipelines by id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pipelines"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c9c9dd3e-8fb7-4c34-9b5f-9fc3816125c9",
+              "name": "Pipelines deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pipelines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b8461ec0-7611-4f85-bcf3-59a04be4d398",
+          "name": "Get a pipeline",
+          "request": {
+            "name": "Get a pipeline",
+            "description": {},
+            "url": {
+              "path": [
+                "pipelines",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the pipeline."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "73f20081-f63b-4056-98fc-9bc0fe979606",
+              "name": "The pipeline.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pipelines",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The id of the pipeline."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"<string>\",\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"aoi\": {\n    \"type\": \"Polygon\"\n  },\n  \"output\": {\n    \"id\": \"<string>\",\n    \"format\": \"geotiff\",\n    \"mosaic\": \"off\"\n  },\n  \"budget_per_km2\": \"<number>\",\n  \"max_cost\": \"<number>\",\n  \"cloud_cover_percentage\": \"<number>\",\n  \"min_aoi_coverage_percentage\": \"<number>\",\n  \"resolution_low\": \"<number>\",\n  \"resolution_high\": \"<number>\",\n  \"interval\": \"1d\",\n  \"result_delivery\": {\n    \"max_latency\": \"0d\",\n    \"priorities\": [\n      \"latest\",\n      \"highest_resolution\",\n      \"lowest_cost\"\n    ]\n  },\n  \"tags\": [\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"status\": \"active\",\n  \"sources\": {\n    \"include\": [\n      \"Pleiades\",\n      \"Spot\",\n      \"PlanetScope\",\n      \"Sentinel-2\"\n    ]\n  },\n  \"id\": \"string\",\n  \"created_at\": \"1980-12-03T17:49:07.871Z\",\n  \"updated_at\": \"1995-03-16T03:11:08.004Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c4a5fafe-564a-4465-977e-02d275ae0972",
+          "name": "Update a pipeline",
+          "request": {
+            "name": "Update a pipeline",
+            "description": {},
+            "url": {
+              "path": [
+                "pipelines",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the pipeline."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"aoi\": {\n    \"type\": \"<string>\"\n  },\n  \"output\": {\n    \"id\": \"<string>\",\n    \"format\": \"<string>\",\n    \"mosaic\": \"<string>\"\n  },\n  \"budget_per_km2\": \"<number>\",\n  \"max_cost\": \"<number>\",\n  \"cloud_cover_percentage\": \"<number>\",\n  \"min_aoi_coverage_percentage\": \"<number>\",\n  \"resolution_low\": \"<number>\",\n  \"resolution_high\": \"<number>\",\n  \"interval\": \"<string>\",\n  \"result_delivery\": {\n    \"max_latency\": \"<string>\",\n    \"priorities\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"tags\": [\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"status\": \"<string>\",\n  \"sources\": {\n    \"include\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4d2e8bed-ef49-4c0b-9ecc-d38581ac1ed3",
+              "name": "Pipeline updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pipelines",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The id of the pipeline."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"aoi\": {\n    \"type\": \"Polygon\"\n  },\n  \"output\": {\n    \"id\": \"<string>\",\n    \"format\": \"geotiff\",\n    \"mosaic\": \"off\"\n  },\n  \"budget_per_km2\": \"<number>\",\n  \"max_cost\": \"<number>\",\n  \"cloud_cover_percentage\": \"<number>\",\n  \"min_aoi_coverage_percentage\": \"<number>\",\n  \"resolution_low\": \"<number>\",\n  \"resolution_high\": \"<number>\",\n  \"interval\": \"1d\",\n  \"result_delivery\": {\n    \"max_latency\": \"0d\",\n    \"priorities\": [\n      \"latest\",\n      \"highest_resolution\",\n      \"lowest_cost\"\n    ]\n  },\n  \"tags\": [\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"status\": \"active\",\n  \"sources\": {\n    \"include\": [\n      \"Pleiades\",\n      \"Spot\",\n      \"PlanetScope\",\n      \"Sentinel-2\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"<string>\",\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"aoi\": {\n    \"type\": \"Polygon\"\n  },\n  \"output\": {\n    \"id\": \"<string>\",\n    \"format\": \"geotiff\",\n    \"mosaic\": \"off\"\n  },\n  \"budget_per_km2\": \"<number>\",\n  \"max_cost\": \"<number>\",\n  \"cloud_cover_percentage\": \"<number>\",\n  \"min_aoi_coverage_percentage\": \"<number>\",\n  \"resolution_low\": \"<number>\",\n  \"resolution_high\": \"<number>\",\n  \"interval\": \"1d\",\n  \"result_delivery\": {\n    \"max_latency\": \"0d\",\n    \"priorities\": [\n      \"latest\",\n      \"highest_resolution\",\n      \"lowest_cost\"\n    ]\n  },\n  \"tags\": [\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"status\": \"active\",\n  \"sources\": {\n    \"include\": [\n      \"Pleiades\",\n      \"Spot\",\n      \"PlanetScope\",\n      \"Sentinel-2\"\n    ]\n  },\n  \"id\": \"string\",\n  \"created_at\": \"1980-12-03T17:49:07.871Z\",\n  \"updated_at\": \"1995-03-16T03:11:08.004Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c2ae5966-d1ce-4fcd-87ef-999637e8c74c",
+          "name": "Delete a pipeline",
+          "request": {
+            "name": "Delete a pipeline",
+            "description": {},
+            "url": {
+              "path": [
+                "pipelines",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the pipeline."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7d4634a1-db20-4003-b38e-ec09ee028fda",
+              "name": "Pipeline deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pipelines",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The id of the pipeline."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.skywatch.co/earthcache",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b31666a9-5c97-4e8d-b9c3-48f62b33697b",
+    "name": "SkyWatch EarthCache Archive Search Pipelines API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The EarthCache API gives developers a single, provider-agnostic interface to discover, price, order, and deliver commercial satellite imagery and geospatial data. Create an archive Search over historical imagery, stand up a Pipeline that monitors an area of interest and delivers imagery on a schedule, retrieve interval results with analytics and metadata download URLs, estimate cost, manage reusable output configurations and saved locations, and subscribe to platform events via callback URIs. All requests are authenticated with an `x-api-key` header. Imagery is billed per square kilometre with resolution-based purchase minimums.\n\nThis description is authored by API Evangelist for the apis.io network and is grounded in SkyWatch's public EarthCache API specification (v1.7, https://api-docs.earthcache.com/). It is not an official SkyWatch artifact.\n\nContact Support:\n Name: SkyWatch Support\n Email: support@skywatch.com",
+      "type": "text/plain"
+    }
+  }
+}
