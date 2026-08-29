@@ -207,6 +207,9 @@ apis:
   - type: Pricing
     url: https://skywatch.com/earthcache/pricing/
 common:
+- type: CapabilityMap
+  url: capabilities/skywatch-capability-edges.yml
+  name: SkyWatch Business Capability Map
 - type: AgenticAccess
   url: agentic-access/skywatch-agentic-access.yml
 - type: DomainSecurity
