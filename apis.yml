@@ -13,6 +13,18 @@ description: SkyWatch Space Applications is an Earth observation company whose E
   (format, bands, mosaicking), saved locations, and callback-based subscriptions
   for platform events. Imagery is billed per square kilometre with resolution-based
   minimums.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
