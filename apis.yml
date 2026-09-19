@@ -123,6 +123,8 @@ apis:
   humanURL: https://api-docs.earthcache.com/
   baseURL: https://api.skywatch.co/earthcache
   tags:
+  - Location
+  tags_raw:
   - Locations
   properties:
   - type: OpenAPI
