@@ -1,13 +1,7 @@
 {
   "provider": "skywatch",
   "sources": [
-    "skywatch-archive-search-api-openapi.yml",
-    "skywatch-cost-estimation-api-openapi.yml",
-    "skywatch-interval-results-api-openapi.yml",
-    "skywatch-locations-api-openapi.yml",
-    "skywatch-outputs-api-openapi.yml",
-    "skywatch-pipelines-api-openapi.yml",
-    "skywatch-subscriptions-api-openapi.yml"
+    "_original/skywatch-openapi.yml"
   ],
   "outputs": [
     "skywatch-archive-search-api-openapi.yml",
@@ -20,9 +14,21 @@
   ],
   "archived": [],
   "errors": [
-    "skywatch-cost-estimation-api-openapi.yml: dangling $ref: #/components/schemas/PriceRequest"
+    "skywatch-openapi.yml: dangling $ref: #/components/schemas/PriceRequest"
   ],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "skywatch-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "skywatch-archive-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "skywatch-cost-estimation-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "skywatch-interval-results-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "skywatch-locations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "skywatch-outputs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "skywatch-pipelines-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "skywatch-subscriptions-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
