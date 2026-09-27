@@ -79,18 +79,6 @@ paths:
                 $ref: '#/components/schemas/CostEstimate'
 components:
   schemas:
-    CostEstimate:
-      type: object
-      properties:
-        cost:
-          type: number
-        currency:
-          type: string
-          example: USD
-        area_km2:
-          type: number
-        probability_of_collection:
-          type: number
     GeoJSON:
       type: object
       description: A GeoJSON geometry (typically a Polygon) describing the AOI.
@@ -184,6 +172,18 @@ components:
               - Spot
               - PlanetScope
               - Sentinel-2
+    CostEstimate:
+      type: object
+      properties:
+        cost:
+          type: number
+        currency:
+          type: string
+          example: USD
+        area_km2:
+          type: number
+        probability_of_collection:
+          type: number
   securitySchemes:
     ApiKey:
       type: apiKey

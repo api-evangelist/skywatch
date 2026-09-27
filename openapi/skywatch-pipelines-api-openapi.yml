@@ -103,6 +103,23 @@ paths:
           description: Pipeline deleted.
 components:
   schemas:
+    PipelineList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Pipeline'
+    GeoJSON:
+      type: object
+      description: A GeoJSON geometry (typically a Polygon) describing the AOI.
+      properties:
+        type:
+          type: string
+          example: Polygon
+        coordinates:
+          type: array
+          items: {}
     Pipeline:
       allOf:
       - $ref: '#/components/schemas/PipelineRequest'
@@ -116,16 +133,6 @@ components:
           updated_at:
             type: string
             format: date-time
-    GeoJSON:
-      type: object
-      description: A GeoJSON geometry (typically a Polygon) describing the AOI.
-      properties:
-        type:
-          type: string
-          example: Polygon
-        coordinates:
-          type: array
-          items: {}
     PipelineRequest:
       type: object
       required:
@@ -209,13 +216,6 @@ components:
               - Spot
               - PlanetScope
               - Sentinel-2
-    PipelineList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Pipeline'
   parameters:
     PipelineId:
       name: id

@@ -58,6 +58,14 @@ paths:
           description: Search still processing; retry after a short delay.
 components:
   schemas:
+    SearchCreated:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
     GeoJSON:
       type: object
       description: A GeoJSON geometry (typically a Polygon) describing the AOI.
@@ -126,14 +134,6 @@ components:
             type: string
           example:
           - resolution
-    SearchCreated:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            id:
-              type: string
   parameters:
     SearchId:
       name: id
