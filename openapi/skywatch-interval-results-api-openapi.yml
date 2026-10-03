@@ -48,6 +48,23 @@ paths:
                 $ref: '#/components/schemas/IntervalResultList'
 components:
   schemas:
+    Band:
+      type: object
+      properties:
+        name:
+          type: string
+        data_type:
+          type: string
+        unit:
+          type: string
+        spectral_wavelength:
+          type: number
+        no_data_value:
+          type: number
+        raster_width:
+          type: number
+        raster_height:
+          type: number
     IntervalResultList:
       type: object
       properties:
@@ -101,23 +118,6 @@ components:
         updated_at:
           type: string
           format: date-time
-    Band:
-      type: object
-      properties:
-        name:
-          type: string
-        data_type:
-          type: string
-        unit:
-          type: string
-        spectral_wavelength:
-          type: number
-        no_data_value:
-          type: number
-        raster_width:
-          type: number
-        raster_height:
-          type: number
   parameters:
     PipelineId:
       name: id

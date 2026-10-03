@@ -58,14 +58,6 @@ paths:
           description: Search still processing; retry after a short delay.
 components:
   schemas:
-    SearchCreated:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            id:
-              type: string
     GeoJSON:
       type: object
       description: A GeoJSON geometry (typically a Polygon) describing the AOI.
@@ -76,33 +68,6 @@ components:
         coordinates:
           type: array
           items: {}
-    SearchResults:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              product_name:
-                type: string
-              source:
-                type: string
-              resolution:
-                type: number
-              cost:
-                type: number
-              preview_url:
-                type: string
-                format: uri
-              thumbnail_url:
-                type: string
-                format: uri
-              start_time:
-                type: string
-                format: date-time
     SearchRequest:
       type: object
       required:
@@ -134,6 +99,41 @@ components:
             type: string
           example:
           - resolution
+    SearchResults:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              product_name:
+                type: string
+              source:
+                type: string
+              resolution:
+                type: number
+              cost:
+                type: number
+              preview_url:
+                type: string
+                format: uri
+              thumbnail_url:
+                type: string
+                format: uri
+              start_time:
+                type: string
+                format: date-time
+    SearchCreated:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
   parameters:
     SearchId:
       name: id
