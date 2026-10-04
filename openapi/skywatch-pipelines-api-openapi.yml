@@ -113,6 +113,26 @@ components:
         coordinates:
           type: array
           items: {}
+    Pipeline:
+      allOf:
+      - $ref: '#/components/schemas/PipelineRequest'
+      - type: object
+        properties:
+          id:
+            type: string
+          created_at:
+            type: string
+            format: date-time
+          updated_at:
+            type: string
+            format: date-time
+    PipelineList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Pipeline'
     PipelineRequest:
       type: object
       required:
@@ -196,26 +216,6 @@ components:
               - Spot
               - PlanetScope
               - Sentinel-2
-    PipelineList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Pipeline'
-    Pipeline:
-      allOf:
-      - $ref: '#/components/schemas/PipelineRequest'
-      - type: object
-        properties:
-          id:
-            type: string
-          created_at:
-            type: string
-            format: date-time
-          updated_at:
-            type: string
-            format: date-time
   parameters:
     PipelineId:
       name: id

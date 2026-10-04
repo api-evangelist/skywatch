@@ -91,13 +91,6 @@ paths:
           description: Location deleted.
 components:
   schemas:
-    Location:
-      type: object
-      properties:
-        name:
-          type: string
-        geometry:
-          $ref: '#/components/schemas/GeoJSON'
     GeoJSON:
       type: object
       description: A GeoJSON geometry (typically a Polygon) describing the AOI.
@@ -108,6 +101,13 @@ components:
         coordinates:
           type: array
           items: {}
+    Location:
+      type: object
+      properties:
+        name:
+          type: string
+        geometry:
+          $ref: '#/components/schemas/GeoJSON'
   securitySchemes:
     ApiKey:
       type: apiKey
