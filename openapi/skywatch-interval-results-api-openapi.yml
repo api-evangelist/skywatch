@@ -47,7 +47,39 @@ paths:
               schema:
                 $ref: '#/components/schemas/IntervalResultList'
 components:
+  parameters:
+    PipelineId:
+      name: id
+      in: path
+      required: true
+      description: The id of the pipeline.
+      schema:
+        type: string
   schemas:
+    Band:
+      type: object
+      properties:
+        name:
+          type: string
+        data_type:
+          type: string
+        unit:
+          type: string
+        spectral_wavelength:
+          type: number
+        no_data_value:
+          type: number
+        raster_width:
+          type: number
+        raster_height:
+          type: number
+    IntervalResultList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/IntervalResult'
     IntervalResult:
       type: object
       properties:
@@ -94,38 +126,6 @@ components:
         updated_at:
           type: string
           format: date-time
-    IntervalResultList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/IntervalResult'
-    Band:
-      type: object
-      properties:
-        name:
-          type: string
-        data_type:
-          type: string
-        unit:
-          type: string
-        spectral_wavelength:
-          type: number
-        no_data_value:
-          type: number
-        raster_width:
-          type: number
-        raster_height:
-          type: number
-  parameters:
-    PipelineId:
-      name: id
-      in: path
-      required: true
-      description: The id of the pipeline.
-      schema:
-        type: string
   securitySchemes:
     ApiKey:
       type: apiKey
