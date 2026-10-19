@@ -18,9 +18,27 @@ edges:
   category: Microsoft Teams app
   publisher_verified:
   - Microsoft 365 Certified
+- partner_name: Bentley Systems (own)
+  partner: bentley-systems
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.bentley.com/en/ecosystem-catalog/catalog/?listing=42015
+  mirror_of: bentley-systems/integrations/bentley-systems-integration-edges.yml
+  apps:
+  - SkyWatch
+  listing_count: 1
+  detected: '2026-10-19'
+  detected_by: mirror-platform-listings.py
+  category: Data and Data Capture
 generated: '2026-10-18'
 method: searched
 source:
 - microsoft-teams/integrations/microsoft-teams-integration-edges.yml
 checked:
+- https://www.bentley.com/en/ecosystem-catalog/catalog/
 - microsoft-teams/integrations/microsoft-teams-integration-edges.yml

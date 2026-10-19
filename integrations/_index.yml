@@ -16,3 +16,16 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: skywatch-bentley-systems-own
+  label: Bentley Systems (own)
+  partner: bentley-systems
+  partner_name: Bentley Systems (own)
+  category: Data and Data Capture
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.bentley.com/en/ecosystem-catalog/catalog/?listing=42015
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
