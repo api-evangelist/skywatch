@@ -1,4 +1,4 @@
-# SkyWatch (skywatch)
+# SkyWatch
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,180 +64,129 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-SkyWatch Space Applications is an Earth observation company whose **EarthCache** platform gives developers a single, provider-agnostic API to discover, price, order, and deliver commercial satellite imagery and geospatial data - from providers including Pleiades, SPOT, PlanetScope, SkySat, Sentinel-1, Sentinel-2, TripleSat, and Kompsat. The EarthCache API (base `https://api.skywatch.co/earthcache`, `x-api-key` auth) exposes Archive Search over historical imagery, Pipelines that monitor an area of interest and deliver imagery on a schedule, interval results with analytics and metadata download URLs, cost estimation, reusable output configurations, saved locations, and callback-based subscriptions. Imagery is billed per square kilometre with resolution-based purchase minimums.
+SkyWatch Space Applications is an Earth observation company whose EarthCache platform gives developers a single API to discover, price, order, and deliver commercial satellite imagery and geospatial data from many providers - Pleiades, SPOT, PlanetScope, SkySat, Sentinel-1, Sentinel-2, TripleSat, Kompsat, and more. The EarthCache API (base https://api.skywatch.co/earthcache, x-api-key auth) exposes Archive Search over historical imagery, Pipelines that monitor an area of interest and deliver imagery on a schedule, interval results with analytics and metadata download URLs, cost estimation, reusable output configurations (format, bands, mosaicking), saved locations, and callback-based subscriptions for platform events. Imagery is billed per square kilometre with resolution-based minimums.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/skywatch/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/skywatch/refs/heads/main/apis.yml)
+**Areas:** Satellite Imagery · Earth Observation · Geospatial · Remote Sensing · EarthCache · Imagery
 
-## Tags
+## SkyWatch on APIs.io
 
-- Satellite Imagery
-- Earth Observation
-- Geospatial
-- Remote Sensing
-- EarthCache
-- Imagery
+Everything profiled for SkyWatch is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/skywatch/](https://apis.io/providers/skywatch/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (7)
 
-- **Created:** 2026-07-04
-- **Modified:** 2026-07-04
+- [SkyWatch Archive Search API](https://apis.io/apis/skywatch/skywatch-archive-search-api/) — Query historical imagery and retrieve matching search results.
+- [SkyWatch Cost Estimation API](https://apis.io/apis/skywatch/skywatch-cost-estimation-api/) — Estimate the cost of locations, intervals, and pipelines.
+- [SkyWatch Interval Results API](https://apis.io/apis/skywatch/skywatch-interval-results-api/) — Results and delivery URLs produced by pipeline intervals.
+- [SkyWatch Locations API](https://apis.io/apis/skywatch/skywatch-locations-api/) — Reusable server-side areas of interest from KML or GeoJSON.
+- [SkyWatch Outputs API](https://apis.io/apis/skywatch/skywatch-outputs-api/) — Reusable output configurations - format, bands, and mosaicking.
+- [SkyWatch Pipelines API](https://apis.io/apis/skywatch/skywatch-pipelines-api/) — Standing orders that monitor an AOI and deliver imagery on a schedule.
+- [SkyWatch Subscriptions API](https://apis.io/apis/skywatch/skywatch-subscriptions-api/) — Callback-based subscriptions to EarthCache platform events.
 
-## APIs
+### Published properties
 
-### SkyWatch EarthCache Archive Search API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Create an asynchronous archive search over historical satellite imagery for an area of interest and date window, filtering by resolution, coverage, and interval, then poll for matching search results (scene metadata, previews, and per-scene pricing) across SkyWatch's provider catalog.
+#### Agentic access (1)
 
-- **Human URL:** [https://api-docs.earthcache.com/](https://api-docs.earthcache.com/)
-- **Base URL:** `https://api.skywatch.co/earthcache`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Skywatch Agentic Access](https://apis.io/agentic-access/skywatch/skywatch-agentic-access/)
 
-- Archive
-- Search
-- Imagery
+#### Collections (8)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://api-docs.earthcache.com/)
-- [API Reference](https://api-docs.earthcache.com/)
-- [OpenAPI](openapi/skywatch-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/skywatch.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/skywatch.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Plans](plans/skywatch-plans-pricing.yml)
+- [SkyWatch EarthCache API](https://apis.io/collections/skywatch/open-skywatch/)
+- [SkyWatch EarthCache Archive Search API](https://apis.io/collections/skywatch/open-skywatch-archive-search-api/)
+- [SkyWatch EarthCache Archive Search Cost Estimation API](https://apis.io/collections/skywatch/open-skywatch-cost-estimation-api/)
+- [SkyWatch EarthCache Archive Search Interval Results API](https://apis.io/collections/skywatch/open-skywatch-interval-results-api/)
+- [SkyWatch EarthCache Archive Search Locations API](https://apis.io/collections/skywatch/open-skywatch-locations-api/)
+- [SkyWatch EarthCache Archive Search Outputs API](https://apis.io/collections/skywatch/open-skywatch-outputs-api/)
+- [SkyWatch EarthCache Archive Search Pipelines API](https://apis.io/collections/skywatch/open-skywatch-pipelines-api/)
+- [SkyWatch EarthCache Archive Search Subscriptions API](https://apis.io/collections/skywatch/open-skywatch-subscriptions-api/)
 
-### SkyWatch EarthCache Pipelines API
+#### Security (2)
 
-Create, list, get, update, and delete pipelines - standing orders that monitor an area of interest between a start and end date, apply budget, cloud-cover, resolution, source, and interval constraints, and deliver matching imagery on a recurring schedule to a configured output.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://api-docs.earthcache.com/](https://api-docs.earthcache.com/)
-- **Base URL:** `https://api.skywatch.co/earthcache`
+- [Skywatch Authentication](https://apis.io/security/skywatch/skywatch-authentication/)
+- [Skywatch Domain Security](https://apis.io/security/skywatch/skywatch-domain-security/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Pipelines
-- Ordering
-- Monitoring
+Published plans, tiers and prices.
 
-#### Properties
+- [Skywatch Plans Pricing](https://apis.io/plans/skywatch/skywatch-plans-pricing/)
 
-- [Documentation](https://api-docs.earthcache.com/)
-- [OpenAPI](openapi/skywatch-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/skywatch.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/skywatch.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### SkyWatch EarthCache Interval Results & Delivery API
+Published request limits.
 
-Retrieve the results produced by pipeline intervals - either scoped to a single pipeline or across all pipelines - including per-interval status, cost, probability of collection, band metadata, and the analytics and metadata download URLs used to deliver each image.
+- [Skywatch Rate Limits](https://apis.io/rate-limits/skywatch/skywatch-rate-limits/)
 
-- **Human URL:** [https://api-docs.earthcache.com/](https://api-docs.earthcache.com/)
-- **Base URL:** `https://api.skywatch.co/earthcache`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Interval Results
-- Delivery
-- Downloads
+- [Skywatch Finops](https://apis.io/finops/skywatch/skywatch-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://api-docs.earthcache.com/)
-- [OpenAPI](openapi/skywatch-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/skywatch.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/skywatch.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### SkyWatch EarthCache Cost Estimation API
-
-Estimate cost before ordering - calculate the price of a location and intervals (honoring purchase minimums and pre-purchase discounts), calculate a full pipeline's cost together with probability of collection for tasking intervals, and look up per-resolution price information for the caller's plan.
-
-- **Human URL:** [https://api-docs.earthcache.com/](https://api-docs.earthcache.com/)
-- **Base URL:** `https://api.skywatch.co/earthcache`
-
-#### Tags
-
-- Pricing
-- Cost
-- Estimation
-
-#### Properties
-
-- [Pricing](https://skywatch.com/earthcache/pricing/)
-- [Documentation](https://api-docs.earthcache.com/)
-- [OpenAPI](openapi/skywatch-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/skywatch.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/skywatch.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### SkyWatch EarthCache Outputs & Bands API
-
-List and retrieve output configurations - the reusable, named definitions (format such as GeoTIFF, band selection, and mosaic behavior) that a pipeline references to control how delivered imagery is rendered and packaged.
-
-- **Human URL:** [https://api-docs.earthcache.com/](https://api-docs.earthcache.com/)
-- **Base URL:** `https://api.skywatch.co/earthcache`
-
-#### Tags
-
-- Outputs
-- Bands
-- Formats
-
-#### Properties
-
-- [Documentation](https://api-docs.earthcache.com/)
-- [OpenAPI](openapi/skywatch-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/skywatch.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/skywatch.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### SkyWatch EarthCache Locations API
-
-Create, list, fetch, update, and delete saved locations - the Locations API abstracts spatial data supplied as KML or GeoJSON into a reusable server-side area-of-interest instance that Search and Pipelines can reference by id.
-
-- **Human URL:** [https://api-docs.earthcache.com/](https://api-docs.earthcache.com/)
-- **Base URL:** `https://api.skywatch.co/earthcache`
-
-#### Tags
-
-- Locations
-- AOI
-- GeoJSON
-
-#### Properties
-
-- [Documentation](https://api-docs.earthcache.com/)
-- [OpenAPI](openapi/skywatch-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/skywatch.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/skywatch.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### SkyWatch EarthCache Subscriptions & Callbacks API
-
-Register a callback URI to receive EarthCache platform events (HTTP webhooks) - create, list, update, and delete subscriptions, send sample payloads to a subscription, and list the callback invocations made over the last three months.
-
-- **Human URL:** [https://api-docs.earthcache.com/](https://api-docs.earthcache.com/)
-- **Base URL:** `https://api.skywatch.co/earthcache`
-
-#### Tags
-
-- Subscriptions
-- Callbacks
-- Webhooks
-
-#### Properties
-
-- [Documentation](https://api-docs.earthcache.com/)
-- [OpenAPI](openapi/skywatch-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/skywatch.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/skywatch.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [LinkedIn](https://www.linkedin.com/company/skywatch-apps)
 - [Website](https://skywatch.com/)
 - [Documentation](https://api-docs.earthcache.com/)
-- [Plans](plans/skywatch-plans-pricing.yml)
-- [Rate Limits](rate-limits/skywatch-rate-limits.yml)
-- [Fin Ops](finops/skywatch-finops.yml)
 - [Blog](https://skywatch.com/blog/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 23.5** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 49.4 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 15.5 |
+| Access clarity | 7.9 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 11.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/skywatch/](https://apis.io/providers/skywatch/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for SkyWatch: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/skywatch/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
